@@ -280,6 +280,15 @@ img { max-width: 100%; }
 .ce-t { left: 6px; right: 18px; top: -2px; height: 4px; transform: rotateX(90deg); }
 .ce-b { left: 6px; right: 18px; bottom: -2px; height: 4px; transform: rotateX(-90deg); }
 
+/* Trombone : pincé sur la tranche droite de la couverture (boucles avant/arrière + coudes autour de l'épaisseur) */
+.clip { --wire: #a6aeb9; position: absolute; right: 0; top: 24%; width: 0; height: 28px; transform-style: preserve-3d; pointer-events: none; }
+.clip svg { position: absolute; top: 0; overflow: visible; fill: none; stroke-linecap: round; }
+.clip .m { stroke: var(--wire); stroke-width: 2.6; }
+.clip .h { stroke: #fff; stroke-width: .9; opacity: .8; transform: translate(-.4px, -.7px); }
+.clip-f { left: -62px; width: 62px; height: 28px; transform: translateZ(3.3px); filter: drop-shadow(1px 2px 1.6px rgba(40, 30, 15, .34)); }
+.clip-b { left: -34px; width: 34px; height: 28px; transform: translateZ(-3.3px); }
+.clip .clip-br { left: -.4px; width: 6px; height: 9.2px; margin-top: -4.6px; transform: rotateX(90deg); }
+
 .cv { position: absolute; inset: 34px 32px 30px 44px; display: flex; flex-direction: column; justify-content: space-between; }
 .cv-top { display: flex; justify-content: flex-end; align-items: center; color: var(--ink-2); min-height: 8px; }
 .cv h2 { margin: 0 0 10px; font-size: clamp(36px, 11vw, 52px); line-height: .98; letter-spacing: -.03em; font-weight: 500; }
@@ -668,6 +677,11 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
                 <button class="close-btn" id="closeBtn" type="button">Refermer le dossier</button>
               </div>
               <i class="cedge ce-r" aria-hidden="true"></i><i class="cedge ce-t" aria-hidden="true"></i><i class="cedge ce-b" aria-hidden="true"></i>
+              <div class="clip" aria-hidden="true">
+                <svg class="clip-b" viewBox="0 0 34 28"><g class="m"><path d="M34 3H14A11 11 0 0 0 14 25H34"/><path d="M34 9H20A5 5 0 0 0 20 19H34"/></g></svg>
+                <svg class="clip-br" style="top:3px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg><svg class="clip-br" style="top:9px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg><svg class="clip-br" style="top:19px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg><svg class="clip-br" style="top:25px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg>
+                <svg class="clip-f" viewBox="0 0 62 28"><g class="m"><path d="M62 3H14A11 11 0 0 0 14 25H62"/><path d="M62 9H20A5 5 0 0 0 20 19H62"/></g><g class="h"><path d="M62 3H14A11 11 0 0 0 14 25H62"/><path d="M62 9H20A5 5 0 0 0 20 19H62"/></g></svg>
+              </div>
             </div>
           </div>
         </div>
