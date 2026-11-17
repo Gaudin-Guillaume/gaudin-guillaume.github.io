@@ -347,6 +347,9 @@ img { max-width: 100%; }
 .ov .tools-head { color: var(--p-ink-2); }
 .ov .tools-restore { color: var(--p-accent); }
 
+/* Les éléments 3D de la page ne doivent jamais passer devant le calque (certains navigateurs mobiles les affichent au-dessus). */
+body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden; transition: visibility 0s .4s; }
+
 /* ---------- Page projet / À propos (calque) ---------- */
 .ov {
   position: fixed; inset: 0; z-index: 100; overflow-y: auto; overscroll-behavior: contain;
@@ -445,6 +448,36 @@ img { max-width: 100%; }
 @media (max-width: 600px) {
   .gallery { grid-template-columns: 1fr; }
   .nav a { padding: 8px 12px; }
+}
+/* ---------- Téléphone ---------- */
+@media (max-width: 600px) {
+  :root { --fh: calc(var(--fw) * 1.65); }
+  .hint { margin-top: 2px; padding: 0 8px; }
+  .live { font-size: 13px; }
+  .tabx { width: 104px; }
+  .back .tabx, .outside .tabx { right: 22px; }
+  .cv { inset: 28px 24px 24px 34px; }
+  .cv h2 { font-size: clamp(34px, 11.5vw, 44px); }
+  .sheet { padding: 12px; gap: 10px; border-radius: 14px; }
+  .sheet .art { aspect-ratio: 2.1 / 1; }
+  .sheet h3 { font-size: 19px; }
+  .sheet .desc { font-size: 13px; }
+  .sheet .per { display: none; }
+  .s-count { white-space: nowrap; }
+  .tags span { font-size: 9.5px; padding: 2px 8px; }
+  .cta { font-size: 14px; padding: 4px 4px 4px 16px; }
+  .cta-ic { width: 30px; height: 30px; }
+  .pocket { left: 24px; right: 18px; top: 22px; bottom: 70px; }
+  .pager { left: 24px; right: 18px; bottom: 16px; }
+  .ov { padding-top: calc(12px + env(safe-area-inset-top, 0px)); }
+  .ov-card { margin-top: 46px; border-radius: 22px; }
+  .pj-head h1 { font-size: clamp(28px, 8.4vw, 38px); }
+  .pj-nav { grid-template-columns: 1fr; }
+  .pj-nav a:last-child { text-align: left; }
+  .facts.row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .pj-key { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .about-hero { padding: 6px 4px 0 10px; }
+  .foot { padding-top: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0s !important; }
@@ -1875,7 +1908,7 @@ var SITE = {
     }
     return art(KINDS[(KINDS.indexOf(p.art) + k) % KINDS.length], p.c);
   }
-  function metaLine(p) { return esc(p.kind) + (p.period ? ' · ' + esc(p.period) : ''); }
+  function metaLine(p) { return esc(p.kind) + (p.period ? '<span class="per"> · ' + esc(p.period) + '</span>' : ''); }
   function tags(p) { return '<div class="tags">' + p.tags.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div>'; }
 
   /* --- Autocollants d'outils --- */
@@ -1978,9 +2011,12 @@ var SITE = {
   render();
 
   /* --- Inclinaison 3D : position de repos selon l'état, puis légère réaction à la souris --- */
-  var rig = $('#rig'), ptr = { x: 0, y: 0 }, ang = { rx: 11, ry: -22 }, raf = 0;
+  var rig = $('#rig'), ptr = { x: 0, y: 0 }, ang = (window.matchMedia('(max-width: 600px)').matches ? { rx: 8, ry: -12 } : { rx: 11, ry: -22 }), raf = 0;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function restAngles() { return scene.classList.contains('open') ? { rx: 11, ry: -5 } : { rx: 11, ry: -22 }; }
+  function restAngles() {
+    var small = window.matchMedia('(max-width: 600px)').matches, open = scene.classList.contains('open');
+    return small ? (open ? { rx: 6, ry: -2 } : { rx: 8, ry: -12 }) : (open ? { rx: 11, ry: -5 } : { rx: 11, ry: -22 });
+  }
   function paint() { rig.style.transform = 'rotateX(' + ang.rx.toFixed(2) + 'deg) rotateY(' + ang.ry.toFixed(2) + 'deg)'; }
   function frame() {
     var b = restAngles(), tx = b.rx - ptr.y * 5, ty = b.ry + ptr.x * 8;
@@ -2057,14 +2093,14 @@ var SITE = {
     ovBody.innerHTML = html;
     widen();
     ov.scrollTop = 0;
-    ov.classList.add('show'); ovClose.classList.add('show');
+    ov.classList.add('show'); ovClose.classList.add('show'); document.body.classList.add('ov-open');
     $('#top').inert = true; $('#main').inert = true; $('#footer').inert = true;
     document.body.style.overflow = 'hidden';
     ovClose.focus({ preventScroll: true });
   }
   function hideOverlay() {
     if (!ov.classList.contains('show')) return;
-    ov.classList.remove('show'); ovClose.classList.remove('show');
+    ov.classList.remove('show'); ovClose.classList.remove('show'); document.body.classList.remove('ov-open');
     $('#top').inert = false; $('#main').inert = false; $('#footer').inert = false;
     document.body.style.overflow = '';
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
