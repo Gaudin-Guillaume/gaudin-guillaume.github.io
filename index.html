@@ -404,6 +404,73 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
 .pj-quote p { font-size: 20px; line-height: 1.35; font-weight: 500; letter-spacing: -.01em; }
 .pj-quote cite { display: block; margin-top: 6px; font-style: normal; font-size: 13px; color: var(--p-ink-2); }
 .pj-note { margin-top: 14px !important; padding: 10px 14px; border-radius: 12px; background: color-mix(in srgb, var(--p-ink) 6%, var(--paper)); font-size: 14px !important; color: var(--p-ink-2); }
+/* ---------- Étude de cas : modules courts et visuels ---------- */
+.ov-card { width: min(1040px, 100%); }
+.cs-crumb { display: flex; align-items: center; gap: 8px; font-size: 15px; color: var(--p-ink-2); margin-bottom: clamp(26px, 5vw, 56px); }
+.cs-crumb i { font-style: normal; opacity: .5; }
+.cs-crumb b { color: var(--p-ink); font-weight: 600; }
+.cs-head h1 { margin: 0; font-size: clamp(38px, 6.6vw, 72px); line-height: .98; letter-spacing: -.035em; font-weight: 500; text-wrap: balance; max-width: 16ch; }
+.cs-kicker { margin: clamp(22px, 4vw, 40px) 0 10px; color: var(--p-ink-2); }
+.cs-lead { margin: 0 0 clamp(26px, 4vw, 40px); font-size: clamp(18px, 2.4vw, 24px); line-height: 1.4; letter-spacing: -.01em; max-width: 40ch; }
+.cs-sec { margin-top: clamp(56px, 9vw, 104px); padding-top: clamp(38px, 6vw, 64px); border-top: 1px solid var(--p-line); }
+.cs-sh { text-align: center; margin: 0 auto clamp(28px, 4vw, 44px); max-width: 760px; }
+.cs-sh .mono { margin: 0 0 12px; color: var(--p-ink-2); }
+.cs-sh h2 { margin: 0; font-size: clamp(30px, 5vw, 54px); line-height: 1.02; letter-spacing: -.035em; font-weight: 500; text-wrap: balance; }
+.cs-intro { margin: 16px auto 0; font-size: 17px; line-height: 1.5; color: var(--p-ink-2); max-width: 58ch; }
+.cs-sec > * + * { margin-top: 22px; }
+.cs-sec > .cs-sh { margin-top: 0; }
+.cs-cards { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cs-cards.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cs-card { display: flex; flex-direction: column; gap: 6px; padding: 22px; border-radius: 22px; background: color-mix(in srgb, var(--p-ink) 4%, var(--paper)); box-shadow: inset 0 0 0 1px var(--p-line); }
+.cs-card b { font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+.cs-card p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--p-ink-2); max-width: none; }
+.cs-ix { color: var(--p-accent); }
+.cs-pairs { display: grid; }
+.cs-pair { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 2.2fr); gap: 14px 36px; padding: 24px 0; border-top: 1px solid var(--p-line); }
+.cs-pair:first-child { border-top: 0; padding-top: 6px; }
+.cs-pair h3 { margin: 0; font-size: clamp(21px, 2.6vw, 28px); line-height: 1.1; letter-spacing: -.02em; font-weight: 500; }
+.cs-pc { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 20px 28px; }
+.cs-pc em { display: block; margin-bottom: 6px; font-style: normal; font-family: var(--font-mono); font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--p-accent); }
+.cs-pc p { margin: 0; font-size: 15px; line-height: 1.5; max-width: none; }
+.cs-panel { padding: clamp(18px, 3vw, 34px); border-radius: 28px; background: color-mix(in srgb, var(--p-ink) 4%, var(--paper)); box-shadow: inset 0 0 0 1px var(--p-line); }
+.cs-panel .flowfig { margin: 0; }
+.cs-panel .flow li { background: var(--paper); }
+.cs-panel .flowfig + .flowfig { margin-top: 28px; }
+.cs-tl { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 24px 30px; }
+.cs-col { position: relative; }
+.cs-col h4 { margin: 0; color: var(--p-ink); }
+.cs-dot { display: block; width: 10px; height: 10px; margin: 12px 0 14px; border-radius: 50%; border: 1.5px solid var(--p-ink-2); background: var(--paper); position: relative; z-index: 1; }
+.cs-col:not(:last-child)::before { content: ""; position: absolute; top: 31px; left: 12px; right: -30px; height: 1px; background: color-mix(in srgb, var(--p-ink) 22%, transparent); }
+.cs-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+.cs-col li { font-size: 14px; line-height: 1.4; color: var(--p-ink-2); padding-left: 12px; position: relative; }
+.cs-col li::before { content: "·"; position: absolute; left: 0; color: var(--p-accent); font-weight: 700; }
+.cs-stats { display: grid; gap: 14px; }
+.cs-stats > div { display: flex; align-items: center; gap: clamp(18px, 4vw, 40px); padding: clamp(20px, 3vw, 32px); border-radius: 28px; background: color-mix(in srgb, var(--p-accent) 9%, var(--paper)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--p-accent) 22%, transparent); }
+.cs-stats b { font-size: clamp(56px, 10vw, 96px); line-height: .9; font-weight: 500; letter-spacing: -.045em; color: var(--p-accent); white-space: nowrap; }
+.cs-stats span { font-size: clamp(16px, 2vw, 19px); line-height: 1.4; max-width: 36ch; }
+.cs-quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.cs-quotes blockquote { margin: 0; padding: clamp(20px, 3vw, 30px); border-radius: 24px; background: color-mix(in srgb, var(--p-ink) 4%, var(--paper)); box-shadow: inset 0 0 0 1px var(--p-line); }
+.cs-quotes p { margin: 0; font-size: clamp(20px, 2.6vw, 27px); line-height: 1.25; font-weight: 500; letter-spacing: -.02em; max-width: none; }
+.cs-quotes cite { display: block; margin-top: 12px; font-style: normal; font-size: 13px; color: var(--p-ink-2); }
+.cs-img { margin: 0; }
+.cs-img .shot { border-radius: 24px; }
+.cs-img figcaption { margin-top: 10px; font-size: 13px; color: var(--p-ink-2); text-align: center; }
+.cs-bullets { list-style: none; margin: 0 auto; padding: 0; display: grid; gap: 12px; max-width: 62ch; }
+.cs-bullets li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.5; }
+.cs-bullets li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--p-accent); }
+.cs-sec > .pj-note { max-width: 70ch; margin-inline: auto; text-align: center; }
+.gallery { margin-top: clamp(40px, 6vw, 72px); }
+@media (max-width: 820px) {
+  .cs-cards, .cs-cards.c3, .cs-quotes { grid-template-columns: 1fr; }
+  .cs-pair { grid-template-columns: 1fr; gap: 12px; }
+  .cs-pc { grid-auto-flow: row; }
+  .cs-tl { grid-template-columns: 1fr; }
+  .cs-col::before { display: none !important; }
+  .cs-dot { display: none; }
+  .cs-col h4 { margin-bottom: 10px; }
+  .cs-stats > div { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
 /* Workflows : diagrammes de parcours */
 .flowfig { margin: 22px 0 6px; padding: 0; }
 .flowfig figcaption { color: var(--p-ink-2); margin-bottom: 10px; }
@@ -672,45 +739,205 @@ var SITE = {
     { label: 'LinkedIn', url: LINKEDIN }
   ],
   projects: [
-    { slug: 'suivi-dsn', name: 'Suivi DSN', title: 'Suivi DSN, un outil que ses utilisateurs abandonnaient', kind: 'UX / UI design', period: 'Janvier – juillet 2025',
-      org: 'Urssaf Caisse nationale', role: 'UX Designer, en binôme', dur: '7 mois', tools: 'Figma, audit ergonomique, tests utilisateurs, analytics',
-      summary: 'Refonte du service qui aide les entreprises à suivre et à corriger leurs déclarations sociales. Seulement 18 % des utilisateurs allaient jusqu’à la page finale.',
-      tags: ['Urssaf', 'Audit', 'Tests'], art: 'topo', c: ['#ebe8df', '#d6d0c1', '#b0a995', '#8fb3a0'],
-      images: ['img/dsn-ecrans.webp', 'img/dsn-detail-anomalie.webp', 'img/dsn-cover.webp'], focus: '50% 6%',
-      imageAlts: ['Trois écrans du Suivi DSN : l’accueil avec le bilan des anomalies, la liste des anomalies de l’entreprise et le détail d’une anomalie', 'Le détail d’une anomalie : description en clair, conséquences, impact financier et social, blocs DSN concernés et substitution effectuée', 'Maquettes du service Suivi DSN : le bilan des anomalies de l’entreprise'],
-      highlight: { value: '18 %', label: 'des utilisateurs seulement allaient jusqu’à la page finale. La grande majorité abandonnait dès le tableau de liste des anomalies.' },
-      sections: [
-        { title: 'Contexte et enjeux', text: ['Le service Suivi DSN est une plateforme numérique à fort trafic de l’Urssaf. Elle permet aux entreprises et aux employeurs de suivre et de corriger leurs déclarations sociales nominatives (DSN).', 'Les contraintes budgétaires étaient fortes et la bande passante des équipes réduite. Le projet devait donc être mené de façon pragmatique et agile, par livraisons successives : des quick wins et des design sprints.', 'J’ai travaillé en binôme avec un autre UX designer, en étroite collaboration avec le chef de projet, les développeurs, les directions métiers et les parties prenantes.'] },
-        { title: 'Découverte, analyse et audit', text: ['À mon arrivée, des recherches et des entretiens utilisateurs avaient déjà été menés, mais ils dataient un peu. J’ai repris et approfondi la phase de découverte.'], items: [
-          ['Un audit ergonomique', 'Un audit complet du service existant, fondé sur les critères ergonomiques de Bastien et Scapin, pour repérer les premiers points de blocage dans la navigation.'],
-          ['Des tests utilisateurs et l’analyse des parcours', 'Des tests sur le service existant, du protocole au recrutement et à la passation, combinés à une analyse des parcours. Le constat était critique : 18 % des utilisateurs seulement allaient jusqu’à la page finale, la grande majorité abandonnait dès le tableau de liste des anomalies.']] },
-        { title: 'Les problèmes repérés et les solutions apportées', numbered: true, items: [
-          { t: 'Refonte de la hiérarchie de la page d’accueil', parts: [
-            ['Problème', 'Le tableau récapitulatif des anomalies était sous la ligne de flottaison, ce qui allongeait considérablement le temps d’accès au cœur du problème.'],
-            ['Solution', 'J’ai réorganisé la page d’accueil pour replacer le tableau de bord des anomalies directement dans le champ de vision. Le statut « consultée / non consultée », qui prenait trop de place et embrouillait la navigation sans réelle utilité, a été retiré.']] },
-          { t: 'Simplification du tableau des anomalies', parts: [
-            ['Problème', 'Les utilisateurs abandonnaient face à un affichage surchargé. Chaque ligne intégrait un système de piluliers complexe, qui indiquait à la fois la présence de l’anomalie sur différents mois et son état de consultation. L’information devenait illisible.'],
-            ['Solution', 'J’ai supprimé ces piluliers du tableau de synthèse et reporté l’information, de façon contextuelle, sur la page finale. La charge cognitive du tableau principal baisse nettement.']] },
-          { t: 'Impact financier ou impact social, plutôt que trois niveaux de priorité', parts: [
-            ['Problème', 'L’ancien système proposait trois niveaux : basse, moyenne, haute. Les utilisateurs ne corrigeaient que les anomalies de haute priorité et ignoraient les autres. Or l’Urssaf régularisait ces écarts automatiquement de son côté, ce qui créait un décalage entre les déclarations réelles de l’entreprise et les estimations de l’organisme. Le métier était très attaché à cette échelle.'],
-            ['Solution', 'Après avoir négocié l’abandon de l’ancienne échelle, et écarté une piste de nudge sur cinq niveaux, j’ai proposé deux catégories claires, validées par les tests : l’impact financier, qui touche directement les finances de l’entreprise, et l’impact social, qui touche les droits sociaux des salariés.'],
-            ['Résultat', 'Lors des tests, les utilisateurs ont compris que les deux aspects étaient indissociables et d’égale importance. Ils ont été incités à traiter l’ensemble des anomalies pour repartir sur des bases de déclaration saines.']] },
-          { t: 'Clarifier les types d’anomalies', parts: [
-            ['Problème', 'Des « anomalies de substitution », où l’Urssaf déclarait à la place de l’entreprise en cas de retard, disparaissaient de façon silencieuse et incompréhensible. De plus, corriger certaines anomalies en déclenchait d’autres par effet ricochet.'],
-            ['Solution', 'J’ai structuré et affiché trois types d’anomalies distincts, à impact, substituables et classiques, pour donner une visibilité totale sur la situation réelle.']] },
-          { t: 'Accessibilité, UX writing et glossaire', parts: [
-            ['Problème', 'Le service employait du jargon technique et des codes de déclaration bruts, sans intitulé explicite. Les débutants (stagiaires, juniors, chefs d’entreprise sans tiers déclarant) étaient bloqués, contrairement aux experts. Les utilisateurs hésitaient aussi à utiliser le questionnaire d’aide pas à pas, de peur que leurs réponses soient transmises à l’Urssaf.'],
-            ['Solution', 'J’ai ajouté sur la page finale la correspondance entre chaque code et son intitulé, avec un accès direct à un glossaire. J’ai aussi refait l’UX writing du questionnaire d’aide, avec une mention rassurante : les données saisies restent strictement en local et ne sont pas envoyées à l’Urssaf.']] }
-        ] },
-        { title: 'Entendu en interview', quotes: [
-          ['« C’est beaucoup trop technique pour les nouveaux. »', 'À propos des descriptions d’anomalies'],
-          ['« Ça va être envoyé, ça ? »', 'À propos des conseils de correction']] },
-        { title: 'Impact et résultats', items: [
-          ['Une meilleure compréhension', 'Les tableaux de bord et les anomalies sont bien mieux compris, par des profils variés, experts comme débutants.'],
-          ['Moins d’abandons sur les listes', 'La suppression de la surcharge visuelle réduit les abandons sur les listes d’anomalies.'],
-          ['Des déclarations plus sûres', 'Les déclarations sociales et financières des entreprises sont sécurisées, ce qui réduit les écarts avec les estimations de l’Urssaf.'],
-          ['Une collaboration rythmée', 'Un travail étroit avec les PO, les développeurs et les directions métiers, en méthode agile, où chaque choix a été validé par la recherche et les tests utilisateurs.']] }
-      ] },
+    {
+      "slug": "suivi-dsn",
+      "name": "Suivi DSN",
+      "title": "Suivi DSN, un outil que ses utilisateurs abandonnaient",
+      "kind": "UX / UI design",
+      "period": "Janvier – juillet 2025",
+      "org": "Urssaf Caisse nationale",
+      "role": "UX Designer, en binôme",
+      "dur": "7 mois",
+      "tools": "Figma, audit ergonomique, tests utilisateurs, analytics",
+      "summary": "Refonte du service qui aide les entreprises à suivre leurs déclarations sociales et à corriger leurs anomalies. Seulement 18 % des utilisateurs allaient jusqu’à la page finale.",
+      "tags": [
+        "Urssaf",
+        "Audit",
+        "Tests"
+      ],
+      "art": "topo",
+      "c": [
+        "#ebe8df",
+        "#d6d0c1",
+        "#b0a995",
+        "#8fb3a0"
+      ],
+      "images": [
+        "img/dsn-ecrans.webp",
+        "img/dsn-detail-anomalie.webp",
+        "img/dsn-cover.webp"
+      ],
+      "focus": "50% 6%",
+      "imageAlts": [
+        "Trois écrans du Suivi DSN : l’accueil avec le bilan des anomalies, la liste des anomalies de l’entreprise et le détail d’une anomalie",
+        "Le détail d’une anomalie : description en clair, conséquences, impact financier et social, blocs DSN concernés et substitution effectuée",
+        "Maquettes du service Suivi DSN : le bilan des anomalies de l’entreprise"
+      ],
+      "story": {
+        "lead": "Les utilisateurs abandonnaient le service avant la dernière page : 18 % seulement allaient au bout.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Contexte",
+            "title": "Un outil clé, peu utilisé",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Le public",
+                    "Experts-comptables, tiers déclarants et dirigeants, du débutant à l’expert."
+                  ],
+                  [
+                    "Mon rôle",
+                    "UX Designer, en binôme avec un autre UX designer."
+                  ],
+                  [
+                    "Les contraintes",
+                    "Budget serré, bande passante réduite : des livraisons par lots, quick wins et design sprints."
+                  ],
+                  [
+                    "Les partenaires",
+                    "Chef de projet, développeurs, directions métiers et parties prenantes."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
+            ],
+            "intro": "Suivi DSN aide les entreprises et leurs experts-comptables à suivre leurs déclarations sociales et à corriger les anomalies détectées par l’Urssaf."
+          },
+          {
+            "n": "03",
+            "label": "Découverte",
+            "title": "Comprendre où ça coince",
+            "mods": [
+              {
+                "t": "stats",
+                "items": [
+                  [
+                    "18 %",
+                    "des utilisateurs allaient jusqu’à la page finale. La grande majorité abandonnait dès le tableau des anomalies."
+                  ]
+                ]
+              },
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Audit ergonomique",
+                    "Selon les critères de Bastien et Scapin, pour repérer les premiers blocages de navigation."
+                  ],
+                  [
+                    "Tests et analyse des parcours",
+                    "Du protocole au recrutement et à la passation, sur le service existant."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
+            ],
+            "intro": "Les recherches existantes dataient un peu : j’ai repris et approfondi la découverte."
+          },
+          {
+            "n": "04",
+            "label": "Solutions",
+            "title": "Cinq leviers",
+            "mods": [
+              {
+                "t": "pairs",
+                "items": [
+                  [
+                    "Page d’accueil",
+                    "Le tableau des anomalies était sous la ligne de flottaison.",
+                    "Le tableau de bord est remonté dans le champ de vision. Le statut « consultée » est retiré."
+                  ],
+                  [
+                    "Tableau des anomalies",
+                    "Des piluliers complexes rendaient l’information illisible.",
+                    "Piluliers retirés du tableau, reportés sur la page finale."
+                  ],
+                  [
+                    "Priorisation",
+                    "Trois niveaux de priorité : seules les anomalies hautes étaient corrigées.",
+                    "Deux catégories de même poids, validées par les tests : impact financier et impact social."
+                  ],
+                  [
+                    "Types d’anomalies",
+                    "Des anomalies de substitution disparaissaient sans explication.",
+                    "Trois types affichés : à impact, substituables, classiques."
+                  ],
+                  [
+                    "UX writing",
+                    "Jargon, codes bruts, peur que les réponses soient envoyées à l’Urssaf.",
+                    "Code et intitulé côte à côte, glossaire, et la mention « données en local »."
+                  ]
+                ],
+                "labels": [
+                  "Défi",
+                  "Solution"
+                ]
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": "Le détail d’une anomalie : description en clair, impact, blocs DSN et substitution."
+              }
+            ]
+          },
+          {
+            "n": "05",
+            "label": "Terrain",
+            "title": "Entendu en interview",
+            "mods": [
+              {
+                "t": "quotes",
+                "items": [
+                  [
+                    "« C’est beaucoup trop technique pour les nouveaux. »",
+                    "À propos des descriptions d’anomalies"
+                  ],
+                  [
+                    "« Ça va être envoyé, ça ? »",
+                    "À propos des conseils de correction"
+                  ]
+                ]
+              }
+            ]
+          },
+          {
+            "n": "06",
+            "label": "Impact",
+            "title": "Ce que ça change",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Mieux compris",
+                    "Tableaux de bord et anomalies, par des profils variés."
+                  ],
+                  [
+                    "Moins d’abandons",
+                    "La surcharge visuelle disparaît des listes."
+                  ],
+                  [
+                    "Déclarations plus sûres",
+                    "Moins d’écarts avec les estimations de l’Urssaf."
+                  ],
+                  [
+                    "Un travail rythmé",
+                    "Agile avec les PO, les développeurs et les directions métiers."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
+            ]
+          }
+        ]
+      }
+    },
     {
       "slug": "portail-tihm",
       "name": "Portail TIHm",
@@ -740,87 +967,142 @@ var SITE = {
         "img/tihm-4.jpg"
       ],
       "focus": "62% 38%",
-      "sections": [
-        {
-          "title": "Contexte et enjeux",
-          "text": [
-            "Le projet TIHm a pour objectif de créer une plateforme qui centralise l’ensemble des aides destinées, ou non exclusivement destinées, aux travailleurs indépendants handicapés (TIH). L’ambition : offrir un espace clair, fiable et structuré, qui permet aux TIH, et dans une moindre mesure à leurs employeurs, de comprendre les démarches à suivre et d’identifier les aides adaptées à leur situation.",
-            "Le principal enjeu était d’aider les utilisateurs à comprendre les démarches pour devenir indépendant et à s’orienter parmi les aides et statuts liés au handicap, un domaine souvent complexe et morcelé. Le projet mêlait accessibilité, fort besoin de clarté, public hétérogène et organisation très complexe du contenu."
-          ]
-        },
-        {
-          "title": "Les contraintes",
-          "items": [
-            [
-              "Un contenu difficile à obtenir",
-              "Certains partenaires ne fournissaient pas toutes les informations nécessaires. J’ai eu recours à une desk research pour combler les manques."
+      "story": {
+        "lead": "Une plateforme qui centralise les aides destinées aux travailleurs indépendants handicapés (TIH).",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Contexte",
+            "title": "Un domaine complexe et morcelé",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Le public",
+                    "Les TIH et, dans une moindre mesure, leurs employeurs."
+                  ],
+                  [
+                    "L’enjeu",
+                    "Accessibilité, besoin de clarté, public hétérogène, contenu très complexe."
+                  ],
+                  [
+                    "Les contraintes",
+                    "Contenu incomplet, comblé par de la desk research, et partenaires qui se retirent en cours de route, comme l’INPI."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              }
             ],
-            [
-              "Des partenaires qui se retirent",
-              "Certains partenaires, comme l’INPI, se sont retirés en cours de route, ce qui a obligé à revoir la structure initialement envisagée."
+            "intro": "Aider les TIH à comprendre les démarches et à trouver les aides adaptées à leur situation."
+          },
+          {
+            "n": "03",
+            "label": "Démarche",
+            "title": "Des ateliers pour structurer",
+            "mods": [
+              {
+                "t": "timeline",
+                "cols": [
+                  {
+                    "h": "Ateliers · Miro",
+                    "li": [
+                      "Co-construction",
+                      "Organisation des informations",
+                      "Architecture globale"
+                    ]
+                  },
+                  {
+                    "h": "Conception · Figma",
+                    "li": [
+                      "Wireframes du contenu et des rubriques",
+                      "Wireframes des écrans",
+                      "Interfaces UI complètes",
+                      "Prototypes cliquables"
+                    ]
+                  },
+                  {
+                    "h": "Avec qui",
+                    "li": [
+                      "Urssaf Aquitaine : métier et chef de projet",
+                      "PO de l’Urssaf Caisse nationale",
+                      "Conseillers entreprise",
+                      "25 partenaires externes"
+                    ]
+                  }
+                ]
+              },
+              {
+                "t": "note",
+                "text": "Impliqué sur toutes les étapes UX, sauf la recherche utilisateur initiale, assurée par les conseillers entreprise."
+              }
             ]
-          ]
-        },
-        {
-          "title": "Démarche et collaboration",
-          "text": [
-            "La démarche s’est articulée autour d’ateliers collaboratifs sur Miro, pour structurer une grande quantité de contenus hétérogènes : animation et co-construction pour organiser les informations et définir l’architecture globale de la plateforme.",
-            "J’ai été impliqué sur toutes les étapes UX, sauf la recherche utilisateur initiale, assurée par les conseillers entreprise."
-          ],
-          "items": [
-            [
-              "Livrables",
-              "Wireframes d’organisation du contenu et du maillage des rubriques, wireframes des écrans, interfaces UI complètes et prototypes cliquables."
+          },
+          {
+            "n": "04",
+            "label": "Solution",
+            "title": "Suivre la vie du travailleur",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Une chronologie",
+                    "Le contenu suit la vie professionnelle du travailleur indépendant handicapé."
+                  ],
+                  [
+                    "Une taxonomie claire",
+                    "Aides triées par catégories, publics et moments de vie."
+                  ],
+                  [
+                    "Des filtres précis",
+                    "Seules les aides pertinentes selon le contexte s’affichent."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": null
+              }
             ],
-            [
-              "Avec qui",
-              "Les équipes métier et le chef de projet de l’Urssaf Aquitaine, le PO de l’Urssaf Caisse nationale, les conseillers entreprise et 25 partenaires externes qui fournissaient les informations sur les aides."
+            "intro": "Plus qu’un annuaire : une lecture structurée et pédagogique, qui contextualise les aides."
+          },
+          {
+            "n": "05",
+            "label": "Impact",
+            "title": "Une première base centralisée",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Contenu structuré",
+                    "Un contenu dispersé et complexe est mis en ordre."
+                  ],
+                  [
+                    "Une première",
+                    "La première base centralisée dédiée aux TIH."
+                  ],
+                  [
+                    "Un travail facilité",
+                    "Pour les équipes de l’Urssaf et les partenaires."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "note",
+                "text": "Les tests utilisateurs n’ont pas pu être menés : mon contrat s’est terminé avant. Pistes : tester l’intuitivité des filtres, ajouter des tutoriels et, peut-être, des simulateurs d’éligibilité."
+              }
             ]
-          ]
-        },
-        {
-          "title": "La solution",
-          "text": [
-            "Nous avons conçu la plateforme comme une suite logique du parcours de vie d’un TIH. La structure linéaire et guidée permet de comprendre en un coup d’œil où l’on en est et quelles aides correspondent, d’éviter la dispersion des informations et de réduire la charge cognitive liée à un système d’aides souvent opaque.",
-            "La solution dépasse un simple annuaire : elle propose une lecture structurée et pédagogique, qui contextualise les aides au lieu de les lister de manière brute."
-          ],
-          "items": [
-            [
-              "Une chronologie de vie professionnelle",
-              "Le contenu est organisé selon la chronologie de la vie professionnelle du travailleur indépendant handicapé."
-            ],
-            [
-              "Une taxonomie claire",
-              "Les aides sont triées par catégories, publics et moments de vie."
-            ],
-            [
-              "Des filtres précis",
-              "Ils n’affichent que les aides pertinentes selon le contexte de l’utilisateur."
-            ]
-          ]
-        },
-        {
-          "title": "Impact et suites",
-          "text": [
-            "Les tests utilisateurs n’ont pas pu être menés dans le cadre de ma mission : mon contrat s’est terminé avant cette phase."
-          ],
-          "items": [
-            [
-              "Un contenu structuré",
-              "Le projet a permis de structurer un contenu dispersé et complexe."
-            ],
-            [
-              "Une base centralisée",
-              "C’est la première base centralisée dédiée aux TIH."
-            ],
-            [
-              "Un travail facilité",
-              "Il facilite le travail des équipes de l’Urssaf et des partenaires, et pose les fondations d’un outil qui pourra guider les travailleurs indépendants handicapés dans leurs démarches."
-            ]
-          ],
-          "note": "Améliorations envisagées : tester l’intuitivité des filtres, travailler davantage l’accompagnement avec des tutoriels ou des exemples de parcours, et éventuellement ajouter des simulateurs d’éligibilité."
-        }
-      ]
+          }
+        ]
+      }
     },
     {
       "slug": "kookit",
@@ -881,564 +1163,442 @@ var SITE = {
         }
       ],
       "screensTitle": "Fiche recette : les six écrans validés par l’atelier",
-      "highlight": {
-        "value": "38 → 8",
-        "label": "écrans avant le premier menu, pour un foyer de deux, dans la refonte de l’inscription que je propose (audit du 15 novembre 2026)."
-      },
-      "sections": [
-        {
-          "title": "La vision en une phrase",
-          "text": [
-            "Kookit compose les menus de la semaine d’un foyer et sert à chacun l’assiette qui correspond à son objectif (perte de poids, maintien ou prise de masse) dans le même plat. Le menu donne la liste de courses, tient compte du frigo, et le suivi du jour compte aussi ce qui est mangé hors menu.",
-            "L’app n’est pas encore publiée. Je la conçois et je la développe en dirigeant une équipe d’agents IA : j’y suis à la fois designer produit, décideur et relecteur."
-          ]
-        },
-        {
-          "title": "Les hypothèses de départ",
-          "text": [
-            "Ce sont des hypothèses, pas des constats : les entretiens qui doivent les confirmer ou les contredire n’ont pas encore eu lieu."
-          ],
-          "items": [
-            {
-              "t": "La friction se joue entre le menu et le suivi",
-              "parts": [
-                [
-                  "Hypothèse",
-                  "Décider du repas, acheter, cuisiner puis compter : quatre moments, souvent quatre outils, et les mêmes informations ressaisies à chaque fois."
+      "story": {
+        "lead": "Une app qui compose le menu d’un foyer et sert à chacun l’assiette de son objectif, dans le même plat.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Vision",
+            "title": "Une boucle fermée",
+            "mods": [
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Menu",
+                    "d": "Une assiette par convive",
+                    "tag": "Semaine"
+                  },
+                  {
+                    "t": "Courses",
+                    "d": "Tirée du menu",
+                    "tag": "Courses"
+                  },
+                  {
+                    "t": "Cuisine",
+                    "d": "Plein écran, un grammage à la fois",
+                    "tag": "Cuisine"
+                  },
+                  {
+                    "t": "Compté",
+                    "d": "« C’est servi » en un appui",
+                    "tag": "Aujourd’hui"
+                  },
+                  {
+                    "t": "Suivi",
+                    "d": "Est-ce que ça marche ?",
+                    "tag": "Suivi"
+                  },
+                  {
+                    "t": "Menu suivant",
+                    "d": "Recomposé",
+                    "tag": "Semaine"
+                  }
                 ],
-                [
-                  "Pour la valider",
-                  "Un guide d’entretien semi-directif est prêt : 5 à 8 entretiens de 45 à 60 minutes, avec trois profils (qui planifient déjà leurs repas, qui suivent leurs macros sérieusement, sans outil)."
-                ]
-              ]
-            },
-            {
-              "t": "Un foyer, plusieurs objectifs, un seul plat",
-              "parts": [
-                [
-                  "Hypothèse",
-                  "Quand les objectifs diffèrent, on cuisine un plat qui ne convient à personne, ou deux plats. Un plat composé assiette par assiette supprime ce choix."
-                ],
-                [
-                  "Pour la valider",
-                  "Observer la dernière semaine de repas de foyers aux objectifs différents, sans présenter Kookit avant la fin de l’entretien."
-                ]
-              ]
-            },
-            {
-              "t": "Compter doit coûter un geste",
-              "parts": [
-                [
-                  "Hypothèse",
-                  "Les repas non notés viennent d’un suivi trop long. « C’est servi » en un appui, ou un scanner qui reconnaît le plat sur une photo, suffisent à garder le suivi à jour."
-                ],
-                [
-                  "Pour la valider",
-                  "Demander ce que les personnes ne notent jamais, et pourquoi ceux-là en particulier."
-                ]
-              ]
-            }
-          ]
-        },
-        {
-          "title": "La stratégie : une boucle fermée",
-          "text": [
-            "Le fil stratégique est une boucle : le menu produit la liste de courses et le mode cuisine, ce qui est mangé nourrit le suivi, et le suivi recompose le menu suivant. Chaque maillon tire sa valeur du précédent, ce qui rend l’ensemble plus utile qu’un outil de plus à ressaisir."
-          ],
-          "flows": [
-            {
-              "steps": [
-                {
-                  "t": "Menu",
-                  "d": "Composé pour la tablée, une assiette par convive",
-                  "tag": "Semaine"
-                },
-                {
-                  "t": "Courses",
-                  "d": "Tirée du menu, avec les repas sur chaque ligne",
-                  "tag": "Courses"
-                },
-                {
-                  "t": "Cuisine",
-                  "d": "Plein écran, un grammage à la fois",
-                  "tag": "Cuisine"
-                },
-                {
-                  "t": "Compté",
-                  "d": "« C’est servi » en un appui",
-                  "tag": "Aujourd’hui"
-                },
-                {
-                  "t": "Suivi",
-                  "d": "Est-ce que ça marche ?",
-                  "tag": "Suivi"
-                },
-                {
-                  "t": "Menu suivant",
-                  "d": "Recomposé à partir de ce qui a été mangé",
-                  "tag": "Semaine"
-                }
-              ],
-              "cols": 3,
-              "caption": "La boucle de Kookit",
-              "note": "La barre de navigation proposée a quatre onglets, un par moment de la boucle : Aujourd’hui, Semaine, Courses et Suivi. La cuisine est un plein écran, pas un onglet : on n’y va pas, on y est, le temps d’un plat."
-            }
-          ]
-        },
-        {
-          "title": "L’avantage défendable : le modèle d’assiette",
-          "text": [
-            "Le cœur du produit est un modèle de composition. Une assiette se compose d’une base commune (protéines, légumes, aromates, réglée sur le besoin protéique) et d’un complément individuel (féculent et gras, réglés sur les calories et les lipides de chacun), calculés sur la journée entière.",
-            "C’est ce qui permet de servir le même plat à deux convives aux objectifs opposés. Je le garde intact dans la refonte : l’audit montre que ce qui coince est l’endroit où l’on trouve les choses, pas le modèle."
-          ],
-          "items": [
-            [
-              "Le manque s’annonce, il ne se comble pas",
-              "Ce que les ingrédients ne peuvent pas couvrir pour un convive est annoncé. Le remède est du répertoire de recettes, pas du réglage."
+                "cols": 3,
+                "caption": "La boucle de Kookit"
+              }
             ],
-            [
-              "Des contraintes dures",
-              "Régimes, aliments bannis et matériel filtrent les recettes avant la sélection. Un créneau difficile à remplir relâche le créneau et la répétition, jamais le régime ni le matériel."
+            "intro": "Le menu produit les courses et le mode cuisine, ce qui est mangé nourrit le suivi, et le suivi recompose le menu suivant."
+          },
+          {
+            "n": "03",
+            "label": "Hypothèses",
+            "title": "Trois paris à vérifier",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Friction entre menu et suivi",
+                    "Décider, acheter, cuisiner, compter : quatre moments, souvent quatre outils."
+                  ],
+                  [
+                    "Un foyer, plusieurs objectifs",
+                    "Un plat composé assiette par assiette évite de cuisiner deux plats."
+                  ],
+                  [
+                    "Compter coûte un geste",
+                    "« C’est servi » en un appui, ou un scanner qui reconnaît le plat."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "note",
+                "text": "Guide d’entretien prêt : 5 à 8 entretiens de 45 à 60 minutes, avec trois profils (planifient leurs repas, suivent leurs macros, sans outil)."
+              }
             ],
-            [
-              "Le même calcul partout",
-              "La composition rend exactement les mêmes grammes sur tous les téléphones du foyer."
-            ]
-          ]
-        },
-        {
-          "title": "Mes décisions stratégiques",
-          "items": [
-            {
-              "t": "Une assiette = une base commune + un complément individuel",
-              "parts": [
-                [
+            "intro": "Ce sont des hypothèses : les entretiens qui doivent les valider n’ont pas encore eu lieu."
+          },
+          {
+            "n": "04",
+            "label": "Modèle",
+            "title": "Le même plat, deux objectifs",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Le manque s’annonce",
+                    "Ce que les ingrédients ne couvrent pas est dit, jamais comblé hors recette."
+                  ],
+                  [
+                    "Des contraintes dures",
+                    "Régime, aliments bannis et matériel ne se relâchent jamais."
+                  ],
+                  [
+                    "Le même calcul partout",
+                    "Les mêmes grammes sur tous les téléphones du foyer."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              }
+            ],
+            "intro": "Une assiette = une base commune (protéines, légumes) réglée sur le besoin protéique + un complément individuel (féculent, gras) réglé sur les calories."
+          },
+          {
+            "n": "05",
+            "label": "Décisions",
+            "title": "Six décisions",
+            "mods": [
+              {
+                "t": "pairs",
+                "items": [
+                  [
+                    "Base commune + complément",
+                    "Servir le même plat à deux objectifs opposés.",
+                    "Depuis le 17 août 2026, un plat n’est plus la recette multipliée.",
+                    "Redistribuer le manque d’un repas : 38 % de journées pires sur 4 860 simulées."
+                  ],
+                  [
+                    "Contraintes dures",
+                    "Une cuisine sans four recevait la quiche, alors que l’inscription promettait le contraire.",
+                    "Depuis le 31 août 2026, régime, aliments bannis et matériel ne se relâchent jamais.",
+                    null
+                  ],
+                  [
+                    "Le gramme, seule unité",
+                    "Prix, macros, frigo et arrondis partagent une base sans conversion cachée.",
+                    "Tout est stocké en grammes de poids cuit ; les unités ménagères ne sont qu’un affichage.",
+                    null
+                  ],
+                  [
+                    "Calcul commun à tous les téléphones",
+                    "Sinon deux téléphones du foyer feraient acheter deux listes différentes.",
+                    "La composition d’un menu est identique partout.",
+                    null
+                  ],
+                  [
+                    "Compte après le premier menu",
+                    "L’app donne quelque chose avant de demander quelque chose.",
+                    "Proposé : « Garder cette semaine » est le moment de s’identifier.",
+                    "Une inscription en 38 écrans."
+                  ],
+                  [
+                    "Pas de vote pour valider",
+                    "Une semaine de menus est une proposition dans une conversation.",
+                    "Proposé : la semaine est active tout de suite, le foyer est prévenu.",
+                    null
+                  ]
+                ],
+                "labels": [
+                  "Pourquoi",
                   "Décision",
-                  "Depuis le 17 août 2026, un plat n’est plus la recette multipliée."
-                ],
-                [
-                  "Pourquoi",
-                  "C’est la seule façon de servir le même plat à deux objectifs opposés."
-                ],
-                [
-                  "Écarté",
-                  "Redistribuer le manque d’un repas sur les suivants : essayé deux fois, retiré deux fois (38 % de journées pires sur 4 860 simulées)."
+                  "Écarté"
                 ]
-              ]
-            },
-            {
-              "t": "Régimes, aliments bannis et matériel sont des contraintes dures",
-              "parts": [
-                [
-                  "Décision",
-                  "Depuis le 31 août 2026, le générateur filtre ces contraintes avant la sélection et ne les relâche jamais."
-                ],
-                [
-                  "Pourquoi",
-                  "Une cuisine sans four recevait la quiche les jours où le catalogue n’avait rien d’autre, alors que l’inscription promettait le contraire. Une promesse non tenue coûte plus cher qu’un créneau vide."
-                ]
-              ]
-            },
-            {
-              "t": "Le gramme est la seule unité stockée",
-              "parts": [
-                [
-                  "Décision",
-                  "Tout est stocké et calculé en grammes de poids cuit. Les unités ménagères (« 4 œufs », « 30 cl ») ne sont qu’un affichage."
-                ],
-                [
-                  "Pourquoi",
-                  "Prix au kilo, macros, frigo et arrondi au conditionnement partagent ainsi une seule base, sans conversion cachée."
-                ]
-              ]
-            },
-            {
-              "t": "Un calcul commun à tous les téléphones",
-              "parts": [
-                [
-                  "Décision",
-                  "La composition d’un menu est identique partout."
-                ],
-                [
-                  "Pourquoi",
-                  "Sinon deux téléphones du même foyer feraient acheter deux listes de courses différentes."
-                ]
-              ]
-            },
-            {
-              "t": "Le compte après le premier menu",
-              "parts": [
-                [
-                  "Décision (proposée)",
-                  "La composition se fait sur le téléphone ; « Garder cette semaine » est le moment où l’on s’identifie."
-                ],
-                [
-                  "Pourquoi",
-                  "L’app donne quelque chose avant de demander quelque chose."
-                ],
-                [
-                  "Écarté",
-                  "Une inscription en 33 étapes, 38 écrans pour un foyer de deux."
-                ]
-              ]
-            },
-            {
-              "t": "Pas de vote pour valider une semaine",
-              "parts": [
-                [
-                  "Décision (proposée)",
-                  "Une semaine composée est active tout de suite. Le foyer est prévenu, et chacun peut éteindre son assiette sur un repas."
-                ],
-                [
-                  "Pourquoi",
-                  "Une semaine de menus pour deux est une proposition dans une conversation, pas une décision à ratifier. Un couple ne doit pas rester avec une semaine en attente parce que l’autre n’a pas ouvert l’app."
-                ]
-              ]
-            }
-          ],
-          "numbered": true
-        },
-        {
-          "title": "Workflow 1 · L’atelier de design",
-          "text": [
-            "Pour tenir le rythme seul, j’ai mis en place le 19 octobre 2026 un atelier : une demande de design passe par une équipe d’agents, chacun dans son rôle, et je valide. Git garde l’historique : chaque avancée est un commit, chaque demande une PR que je fusionne pour valider."
-          ],
-          "flows": [
-            {
-              "steps": [
-                {
-                  "t": "Demande",
-                  "d": "Une issue labellisée, avec les écrans concernés",
-                  "tag": "Entrée",
-                  "kind": "human"
-                },
-                {
-                  "t": "Problème",
-                  "d": "Ce dont l’utilisateur a besoin à ce moment, les cas limites, les décisions à prendre",
-                  "tag": "Réfléchit"
-                },
-                {
-                  "t": "Hiérarchie",
-                  "d": "L’ordre des blocs, ce qui se voit sans défiler, ce qu’on retire",
-                  "tag": "Réfléchit"
-                },
-                {
-                  "t": "Textes",
-                  "d": "Chaque texte de chaque écran",
-                  "tag": "Réfléchit"
-                },
-                {
-                  "t": "Écrans",
-                  "d": "Les écrans de la proposition, avec les pièces du kit",
-                  "tag": "Dessine dans Figma",
-                  "kind": "draw"
-                },
-                {
-                  "t": "Prototype",
-                  "d": "Les liens, le point de départ, l’audit",
-                  "tag": "Dessine dans Figma",
-                  "kind": "draw"
-                },
-                {
-                  "t": "Critique",
-                  "d": "Relecture avant moi : bon pour validation, ou à reprendre une fois",
-                  "tag": "Réfléchit"
-                },
-                {
-                  "t": "Validation",
-                  "d": "Je fusionne la PR : la proposition remplace l’original dans Figma",
-                  "tag": "Moi",
-                  "kind": "human"
-                }
-              ],
-              "cols": 4,
-              "caption": "De la demande à la validation",
-              "note": "Un seul rôle dessine à la fois par fichier. Rien n’est supprimé : les écrans remplacés partent dans une section d’archives. Trois PR ouvertes au plus : on n’empile pas du travail sur des choix non validés. Une tâche planifiée relance la boucle deux fois par jour.",
-              "numbered": true
-            }
-          ]
-        },
-        {
-          "title": "Workflow 2 · L’inscription, de 38 écrans à 8",
-          "text": [
-            "Constat : pour un foyer de deux, l’inscription actuelle demande 38 écrans avant le premier menu, dont 22 de questions. Les questions de la deuxième personne sont posées à la place de celle-ci, et régimes, aliments bannis et matériel sont demandés à tout le monde, alors que les valeurs par défaut conviennent à la plupart des foyers.",
-            "La règle : le minimum de questions pour un premier menu ; tout le reste se demande au moment où ça sert, et jamais à la place de quelqu’un qui a un téléphone. Le compte vient après le menu, quand l’app a déjà donné quelque chose."
-          ],
-          "flows": [
-            {
-              "steps": [
-                {
-                  "t": "Bienvenue",
-                  "d": "Une assiette en deux parts de deux couleurs : « Un menu pour vous deux, une assiette pour chacun »"
-                },
-                {
-                  "t": "Toi",
-                  "d": "Prénom et objectif en trois cartes : perdre, garder, prendre"
-                },
-                {
-                  "t": "Ton corps",
-                  "d": "Quatre molettes préréglées. La carte d’objectif se met à jour en direct"
-                },
-                {
-                  "t": "Tes journées",
-                  "d": "Repas pris, activité, et « Ta cuisine » repliée avec ses valeurs par défaut"
-                },
-                {
-                  "t": "Avec qui ?",
-                  "d": "Seul·e, ou une carte par personne ajoutée, avec une invitation par code"
-                },
-                {
-                  "t": "Première semaine",
-                  "d": "Les jours cochés, une ligne repliée « Quelqu’un évite quelque chose ? »"
-                },
-                {
-                  "t": "Ta semaine",
-                  "d": "La grille de la semaine, avec « Garder »"
-                },
-                {
-                  "t": "Garder ta semaine",
-                  "d": "Le compte : Apple, Google ou e-mail, en un appui",
-                  "tag": "Ici le compte",
-                  "kind": "human"
-                }
-              ],
-              "cols": 4,
-              "caption": "Le parcours proposé : huit écrans dont cinq de questions",
-              "note": "Calibrer sans formulaire : l’app calcule, l’utilisateur corrige. Personne ne tape un nombre de calories ; un curseur de rythme, de 0,25 à 1 kg par semaine, donne la date d’arrivée et l’écart de calories.",
-              "numbered": true
-            }
-          ],
-          "items": [
-            [
-              "Un code reçu",
-              "Bienvenue, « J’ai un code », compte d’abord (il faut être identifié pour rejoindre), puis trois écrans pour soi. Pas de foyer à nommer ni de première semaine."
-            ],
-            [
-              "Un enfant",
-              "Une carte compacte ; sous 15 ans l’objectif est « Garder », verrouillé."
-            ],
-            [
-              "Un poids cible irréaliste",
-              "Le curseur de rythme est borné et l’échéance se déduit du rythme, pas l’inverse : « À ce rythme, tu y es le 14 mars. »"
-            ],
-            [
-              "Pas de four",
-              "Décoché dans « Ta cuisine », il devient une contrainte dure. Si le catalogue n’a rien pour un créneau, la case vide le dit au lieu de servir un plat interdit."
-            ],
-            [
-              "Une allergie",
-              "La ligne dit en clair : c’est une préférence, pas une allergie ; Kookit ne garantit pas un menu sans trace."
+              }
             ]
-          ]
-        },
-        {
-          "title": "Workflow 3 · Composer la semaine en trois appuis",
-          "text": [
-            "Aujourd’hui, le menu se remanie dans deux écrans différents, avant et après confirmation, avec deux listes de gestes. La refonte n’en garde qu’un : un volet « Ce repas », le même partout."
-          ],
-          "flows": [
-            {
-              "steps": [
-                {
-                  "t": "Semaine vide",
-                  "d": "« Composer la semaine du… », plein largeur"
-                },
-                {
-                  "t": "Volet Composer",
-                  "d": "Pour qui, quels jours. Régimes, matériel et budget restent repliés"
-                },
-                {
-                  "t": "La grille se remplit",
-                  "d": "Journée par journée, sous un bandeau « Proposition »"
-                },
-                {
-                  "t": "Semaine proposée",
-                  "d": "Un anneau par convive, le coût de la journée"
-                },
-                {
-                  "t": "Semaine gardée",
-                  "d": "Un appui sur « Garder » : les courses sont calculées",
-                  "tag": "Fini",
-                  "kind": "human"
-                }
-              ],
-              "cols": 5,
-              "caption": "Du dimanche soir à la liste de courses",
-              "numbered": true
-            }
-          ],
-          "items": [
-            [
-              "Remplacer",
-              "Trois appuis. Le delta de courses s’affiche sous chaque candidat, par exemple « +2 articles · −1 · +1,40 € »."
-            ],
-            [
-              "Échanger",
-              "Trois appuis. Les deux cartes glissent l’une à la place de l’autre, les courses ne changent pas."
-            ],
-            [
-              "Retirer",
-              "Deux appuis, avec une confirmation seulement si des courses sont déjà faites."
-            ],
-            [
-              "Qui mange",
-              "Deux à trois appuis. Les assiettes sont recomposées et l’effet sur les courses est annoncé avant d’appliquer. Un invité est une assiette sans objectif ; une absente rend sa part aux restes."
+          },
+          {
+            "n": "06",
+            "label": "Workflows",
+            "title": "Quatre parcours conçus",
+            "mods": [
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Demande",
+                    "d": "Une issue avec les écrans concernés",
+                    "tag": "Entrée",
+                    "kind": "human"
+                  },
+                  {
+                    "t": "Problème",
+                    "d": "Besoins, cas limites, décisions",
+                    "tag": "Réfléchit"
+                  },
+                  {
+                    "t": "Hiérarchie",
+                    "d": "Ordre des blocs, ce qu’on retire",
+                    "tag": "Réfléchit"
+                  },
+                  {
+                    "t": "Textes",
+                    "d": "Chaque texte de chaque écran",
+                    "tag": "Réfléchit"
+                  },
+                  {
+                    "t": "Écrans",
+                    "d": "Avec les pièces du kit",
+                    "tag": "Figma",
+                    "kind": "draw"
+                  },
+                  {
+                    "t": "Prototype",
+                    "d": "Liens, point de départ, audit",
+                    "tag": "Figma",
+                    "kind": "draw"
+                  },
+                  {
+                    "t": "Critique",
+                    "d": "Bon pour validation, ou à reprendre",
+                    "tag": "Réfléchit"
+                  },
+                  {
+                    "t": "Validation",
+                    "d": "Je fusionne la PR",
+                    "tag": "Moi",
+                    "kind": "human"
+                  }
+                ],
+                "cols": 4,
+                "caption": "L’atelier de design : une équipe d’agents dans Figma",
+                "note": "Un seul rôle dessine à la fois. Rien n’est supprimé : les écrans remplacés vont aux archives. Trois PR ouvertes au plus.",
+                "numbered": true
+              },
+              {
+                "t": "stats",
+                "items": [
+                  [
+                    "38 → 8",
+                    "écrans avant le premier menu pour un foyer de deux, dans la refonte de l’inscription proposée."
+                  ]
+                ]
+              },
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Bienvenue"
+                  },
+                  {
+                    "t": "Toi",
+                    "d": "Prénom, objectif en trois cartes"
+                  },
+                  {
+                    "t": "Ton corps",
+                    "d": "Quatre molettes préréglées"
+                  },
+                  {
+                    "t": "Tes journées",
+                    "d": "Repas, activité, cuisine repliée"
+                  },
+                  {
+                    "t": "Avec qui ?",
+                    "d": "Seul·e ou ajouter quelqu’un"
+                  },
+                  {
+                    "t": "Première semaine",
+                    "d": "Jours cochés, composer"
+                  },
+                  {
+                    "t": "Ta semaine",
+                    "d": "La grille, « Garder »"
+                  },
+                  {
+                    "t": "Garder",
+                    "d": "Le compte, en un appui",
+                    "tag": "Ici le compte",
+                    "kind": "human"
+                  }
+                ],
+                "cols": 4,
+                "caption": "Inscription : huit écrans dont cinq de questions",
+                "numbered": true
+              },
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Semaine vide",
+                    "d": "« Composer la semaine »"
+                  },
+                  {
+                    "t": "Volet Composer",
+                    "d": "Pour qui, quels jours"
+                  },
+                  {
+                    "t": "La grille se remplit",
+                    "d": "Sous un bandeau « Proposition »"
+                  },
+                  {
+                    "t": "Semaine proposée",
+                    "d": "Un anneau par convive"
+                  },
+                  {
+                    "t": "Semaine gardée",
+                    "d": "Les courses sont calculées",
+                    "tag": "Fini",
+                    "kind": "human"
+                  }
+                ],
+                "cols": 5,
+                "caption": "Composer la semaine en trois appuis",
+                "numbered": true
+              },
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Avant de commencer",
+                    "d": "Tablée, matériel, durée"
+                  },
+                  {
+                    "t": "Une étape par écran",
+                    "d": "Consigne, minuteur, conseil"
+                  },
+                  {
+                    "t": "Servir",
+                    "d": "Une carte par assiette"
+                  },
+                  {
+                    "t": "C’est servi",
+                    "d": "Compté en un appui",
+                    "tag": "Fini",
+                    "kind": "human"
+                  }
+                ],
+                "cols": 4,
+                "caption": "Cuisiner : un grammage à la fois"
+              },
+              {
+                "t": "screens"
+              }
             ]
-          ]
-        },
-        {
-          "title": "Workflow 4 · Cuisiner avec deux grammages, sans jamais les lire ensemble",
-          "text": [
-            "La règle : un grammage à la fois, celui de l’étape. Tant que ça cuit ensemble, un seul chiffre ; dès que ça se dose, un chiffre par assiette, à la couleur de son convive, et jamais le total à côté."
-          ],
-          "flows": [
-            {
-              "steps": [
-                {
-                  "t": "Avant de commencer",
-                  "d": "La tablée, ce qu’on sort du placard, le matériel, la durée"
-                },
-                {
-                  "t": "Une étape par écran",
-                  "d": "Consigne en grand, minuteur, conseil. Zones de 64 points, glissement ou voix"
-                },
-                {
-                  "t": "Servir",
-                  "d": "Une carte par assiette, avec ses grammes"
-                },
-                {
-                  "t": "C’est servi",
-                  "d": "Compté pour toute la tablée, en un appui",
-                  "tag": "Fini",
-                  "kind": "human"
-                }
-              ],
-              "cols": 4,
-              "caption": "Le mode cuisine, en plein écran"
-            }
-          ],
-          "items": [
-            [
-              "Base commune (cuit ensemble)",
-              "Un seul chiffre pour la tablée : « Faire revenir 400 g de blanc de poulet »."
-            ],
-            [
-              "Complément individuel (se dose)",
-              "Une ligne par assiette, la mienne en premier, jamais le total : « Riz · 120 g · 70 g »."
-            ],
-            [
-              "Plat mixte (une masse)",
-              "Un seul chiffre à la cuisson, rien par assiette avant le service, où la part se lit en dessin."
-            ],
-            [
-              "Un ingrédient manque à l’étape 3",
-              "Un appui long ouvre « Il manque ? » : remplacer, continuer sans, ou changer de plat, avec l’effet chiffré sur chaque assiette. Jamais « l’ajouter à la liste » pour un repas proche."
+          },
+          {
+            "n": "07",
+            "label": "Feuille de route",
+            "title": "Où en est le projet",
+            "mods": [
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Modèle d’assiette",
+                    "d": "Décidé, surveillé par des scripts de contrôle",
+                    "tag": "Fait",
+                    "kind": "done"
+                  },
+                  {
+                    "t": "Atelier de design",
+                    "d": "Mis en place le 19 octobre 2026",
+                    "tag": "Fait",
+                    "kind": "done"
+                  },
+                  {
+                    "t": "Audit UX",
+                    "d": "Livré le 15 novembre 2026",
+                    "tag": "Fait",
+                    "kind": "done"
+                  },
+                  {
+                    "t": "Entretiens",
+                    "d": "Guide prêt, pas encore menés",
+                    "tag": "Prochain",
+                    "kind": "next"
+                  },
+                  {
+                    "t": "Lot 1",
+                    "d": "Mode cuisine, volet « Ce repas »",
+                    "tag": "Prochain",
+                    "kind": "next"
+                  },
+                  {
+                    "t": "Lot 2",
+                    "d": "Onglet Semaine, restes, invités",
+                    "tag": "À venir",
+                    "kind": "later"
+                  },
+                  {
+                    "t": "Lot 3",
+                    "d": "Inscription en huit écrans",
+                    "tag": "À venir",
+                    "kind": "later"
+                  },
+                  {
+                    "t": "Tests",
+                    "d": "Inscription et mode cuisine",
+                    "tag": "À prévoir",
+                    "kind": "later"
+                  }
+                ],
+                "cols": 4
+              },
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Activation",
+                    "Part des personnes qui gardent leur première semaine."
+                  ],
+                  [
+                    "Usage",
+                    "Repas comptés par semaine et par foyer."
+                  ],
+                  [
+                    "Rétention",
+                    "Foyers qui composent une deuxième semaine."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "note",
+                "text": "Indicateurs proposés : je les fixerai avec les premiers utilisateurs, avant la mise en ligne."
+              },
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Le catalogue hors de la barre ?",
+                    "« Mes recettes » passe à deux appuis : le choix le plus discutable."
+                  ],
+                  [
+                    "La fin du vote",
+                    "Utile encore à un foyer de plus de deux ?"
+                  ],
+                  [
+                    "L’invité",
+                    "Portion du catalogue, ou trois gabarits ?"
+                  ],
+                  [
+                    "Les restes",
+                    "Réchauffés tels quels, ou recomposés ?"
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
             ]
-          ]
-        },
-        {
-          "title": "Feuille de route et validation",
-          "text": [
-            "Ce qui est fait, ce qui vient, et ce qui manque encore, sans le maquiller."
-          ],
-          "flows": [
-            {
-              "steps": [
-                {
-                  "t": "Modèle d’assiette et contraintes dures",
-                  "d": "Décidés et surveillés par des scripts de contrôle (catalogue, portions, régimes)",
-                  "tag": "Fait",
-                  "kind": "done"
-                },
-                {
-                  "t": "Atelier de design",
-                  "d": "Mis en place le 19 octobre 2026, pilote sur la fiche recette",
-                  "tag": "Fait",
-                  "kind": "done"
-                },
-                {
-                  "t": "Audit UX et architecture",
-                  "d": "Livré le 15 novembre 2026 : cinq pièges, nouvelle navigation, trois parcours",
-                  "tag": "Fait",
-                  "kind": "done"
-                },
-                {
-                  "t": "Entretiens qualitatifs",
-                  "d": "Guide prêt, 5 à 8 entretiens, trois profils. Pas encore menés",
-                  "tag": "Prochain",
-                  "kind": "next"
-                },
-                {
-                  "t": "Lot 1 · Le geste quotidien",
-                  "d": "Mode cuisine, heure devinée, volet « Ce repas » unique",
-                  "tag": "Prochain",
-                  "kind": "next"
-                },
-                {
-                  "t": "Lot 2 · La semaine",
-                  "d": "Onglet Semaine, fin du vote, restes et invités, delta de courses",
-                  "tag": "À venir",
-                  "kind": "later"
-                },
-                {
-                  "t": "Lot 3 · L’entrée",
-                  "d": "Inscription en huit écrans, compte à la fin",
-                  "tag": "À venir",
-                  "kind": "later"
-                },
-                {
-                  "t": "Tests d’utilisabilité",
-                  "d": "Parcours d’inscription et mode cuisine, avec des foyers de deux personnes",
-                  "tag": "À prévoir",
-                  "kind": "later"
-                }
-              ],
-              "cols": 4,
-              "caption": "Où en est le projet"
-            }
-          ],
-          "items": [
-            [
-              "Activation",
-              "La part des personnes qui gardent leur première semaine."
-            ],
-            [
-              "Usage",
-              "Le nombre de repas comptés par semaine et par foyer."
-            ],
-            [
-              "Rétention",
-              "La part des foyers qui composent une deuxième semaine."
-            ]
-          ],
-          "note": "Ces trois indicateurs sont une proposition : je les fixerai avec les premiers utilisateurs, avant la mise en ligne."
-        },
-        {
-          "title": "Ce que je n’ai pas encore tranché",
-          "items": [
-            [
-              "Le catalogue hors de la barre ?",
-              "« Recettes » devient un rail « Explorer » en tête de Semaine, et « Mes recettes » passe à deux appuis au lieu d’un. C’est le choix le plus discutable : accepté, ou cinquième onglet ?"
-            ],
-            [
-              "La fin du vote",
-              "Le statut « proposé » sert-il encore à un foyer de plus de deux personnes ?"
-            ],
-            [
-              "Le compte après le premier menu",
-              "Oui côté produit. Côté technique, il faut vérifier que le catalogue se télécharge sans compte ; sinon le miroir embarqué sert au premier menu."
-            ],
-            [
-              "L’invité",
-              "La portion du catalogue sans objectif suffit-elle, ou faut-il trois gabarits : adulte, grand appétit, enfant ?"
-            ],
-            [
-              "Les restes",
-              "Réchauffés tels quels, avec les macros du jour de cuisson, ou recomposés pour la tablée du lendemain ? Ma proposition : on ne redose pas un reste."
-            ]
-          ]
-        }
-      ]
+          }
+        ]
+      }
     },
     {
       "slug": "centrix",
@@ -1468,106 +1628,155 @@ var SITE = {
         "img/centrix-4.jpg"
       ],
       "focus": "62% 40%",
-      "sections": [
-        {
-          "title": "Contexte et enjeux",
-          "text": [
-            "Centrix propose une solution multicanale et centrée utilisateur, destinée aux hôtes de caisse et aux chefs de caisse. Elle vise à simplifier leur quotidien, réduire la charge mentale et améliorer la communication interne, pour une meilleure efficacité opérationnelle du magasin.",
-            "La zone caisse concentre de nombreuses tensions : files d’attente, incidents prix et promotions, sous-effectif, multiplicité des outils et forte pression relationnelle avec les clients. Le défi : comment concevoir une solution numérique qui fluidifie les processus en caisse, améliore le quotidien des équipes et renforce l’efficacité globale du magasin ?",
-            "Plus précisément, le projet devait :"
-          ],
-          "items": [
-            [
-              "Centraliser",
-              "Des informations aujourd’hui dispersées entre la caisse, les RH et le commercial."
+      "story": {
+        "lead": "Une application multicanale pour les hôtes et chefs de caisse : simplifier leur quotidien et réduire la charge mentale.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Défi",
+            "title": "La caisse, un lieu sous tension",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Centraliser",
+                    "Les informations dispersées entre caisse, RH et commercial."
+                  ],
+                  [
+                    "Réduire la surcharge",
+                    "Cognitive et émotionnelle."
+                  ],
+                  [
+                    "S’adapter",
+                    "À un rythme de travail intense."
+                  ],
+                  [
+                    "Valoriser",
+                    "Des métiers peu reconnus."
+                  ],
+                  [
+                    "Rester simple",
+                    "Rapide et utile immédiatement, sur le terrain."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              }
             ],
-            [
-              "Réduire la surcharge",
-              "Cognitive et émotionnelle des équipes."
-            ],
-            [
-              "S’adapter",
-              "À un rythme de travail intense et contraint."
-            ],
-            [
-              "Valoriser",
-              "Des métiers souvent peu reconnus."
-            ],
-            [
-              "Rester simple",
-              "Une expérience simple, rapide et immédiatement utile sur le terrain."
+            "intro": "Files d’attente, incidents prix et promotions, sous-effectif, outils multiples et pression des clients."
+          },
+          {
+            "n": "03",
+            "label": "Démarche",
+            "title": "Du terrain aux tests",
+            "mods": [
+              {
+                "t": "timeline",
+                "cols": [
+                  {
+                    "h": "Recherche",
+                    "li": [
+                      "Mon expérience d’hôte de caisse",
+                      "Recherche documentaire",
+                      "Questionnaire : 28 répondants",
+                      "Observations (shadowing) : un hôte, un chef de caisse"
+                    ]
+                  },
+                  {
+                    "h": "Synthèse",
+                    "li": [
+                      "Irritants majeurs",
+                      "Cibles et besoins",
+                      "Customer journey maps",
+                      "Jobs to be done, workflows"
+                    ]
+                  },
+                  {
+                    "h": "Conception",
+                    "li": [
+                      "Vision produit",
+                      "UI Kit marque blanche, design tokens",
+                      "Prototypage des écrans clés"
+                    ]
+                  },
+                  {
+                    "h": "Tests",
+                    "li": [
+                      "Tests modérés, hôte et chef de caisse",
+                      "Analyse par SUS et verbalisations",
+                      "Ajustements ergonomiques et UI"
+                    ]
+                  }
+                ]
+              }
             ]
-          ]
-        },
-        {
-          "title": "Démarche",
-          "text": [
-            "Le projet a été mené selon une démarche UX complète, qui combine expérience personnelle, recherche terrain et méthodes centrées utilisateur."
-          ],
-          "items": [
-            [
-              "Recherche utilisateur",
-              "Pré-recherche appuyée par mon expérience d’hôte de caisse, recherche documentaire sur la transformation de la grande distribution, questionnaire exploratoire (28 répondants : hôtes et chefs de caisse) et observations terrain auprès d’un hôte et d’un chef de caisse, pour analyser les tâches réelles, les frictions et la charge cognitive."
-            ],
-            [
-              "Synthèse et cadrage",
-              "Identification des irritants majeurs (écarts de prix, communication fragmentée, déplacements inutiles, stress), définition des cibles et de leurs besoins, customer journey maps, jobs to be done et workflows."
-            ],
-            [
-              "Conception",
-              "Vision produit et objectifs stratégiques, conception fonctionnelle et UX, UI Kit marque blanche fondé sur des design tokens, prototypage des écrans clés et des parcours principaux."
-            ],
-            [
-              "Tests et itérations",
-              "Tests utilisateurs modérés (hôte et chef de caisse), analyse par SUS, observations et verbalisations, priorisation des problèmes et recommandations UX, puis ajustements ergonomiques et UI."
+          },
+          {
+            "n": "04",
+            "label": "Solution",
+            "title": "Une app simple et fluide",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Outils centralisés",
+                    "Caisse, RH et commercial."
+                  ],
+                  [
+                    "Badgeage à distance",
+                    "Et demandes RH simplifiées."
+                  ],
+                  [
+                    "Dashboard personnalisé",
+                    "Valorise les performances individuelles."
+                  ],
+                  [
+                    "Caisses attribuées",
+                    "Automatiquement, selon l’affluence."
+                  ],
+                  [
+                    "Fiches articles",
+                    "Et promotions à jour en temps réel."
+                  ],
+                  [
+                    "Gamification",
+                    "Reconnaissance et motivation."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": null
+              },
+              {
+                "t": "image",
+                "k": 2,
+                "cap": null
+              }
             ]
-          ],
-          "numbered": true
-        },
-        {
-          "title": "La solution",
-          "text": [
-            "Centrix est une application simple, fluide et multicanale, pensée pour s’intégrer au quotidien réel des équipes de caisse. Elle vise autant la réduction de la fatigue et du stress que l’amélioration de la performance et de l’expérience client."
-          ],
-          "items": [
-            [
-              "Des outils centralisés",
-              "Caisse, RH et commercial réunis au même endroit."
-            ],
-            [
-              "Badgeage à distance",
-              "Et gestion simplifiée des demandes RH."
-            ],
-            [
-              "Un dashboard personnalisé",
-              "Il valorise les performances individuelles."
-            ],
-            [
-              "Attribution automatique des caisses",
-              "Selon l’affluence."
-            ],
-            [
-              "Fiches articles et promotions",
-              "À jour en temps réel."
-            ],
-            [
-              "De la gamification",
-              "Pour renforcer la reconnaissance et la motivation."
-            ],
-            [
-              "Plus d’autonomie",
-              "Les hôtes de caisse gagnent en autonomie, les chefs de caisse sont soulagés."
+          },
+          {
+            "n": "05",
+            "label": "Suivi",
+            "title": "Amélioration continue",
+            "mods": [
+              {
+                "t": "bullets",
+                "items": [
+                  "Tests utilisateurs itératifs pour valider ergonomie et compréhension.",
+                  "Satisfaction suivie : SUS et retours qualitatifs.",
+                  "Données collectées dans le respect du RGPD : consentement, minimisation, sécurité."
+                ]
+              }
             ]
-          ]
-        },
-        {
-          "title": "Suivi du projet",
-          "text": [
-            "Le suivi de Centrix repose sur une logique d’amélioration continue : tests utilisateurs itératifs pour valider l’ergonomie et la compréhension, suivi de la satisfaction (SUS, retours qualitatifs), analyse des points de friction récurrents et ajustements UX/UI.",
-            "La collecte des données utilisateurs est encadrée, dans le respect du RGPD (consentement, minimisation, sécurité). L’objectif est une solution évolutive, alignée sur les besoins des utilisateurs et sur les enjeux opérationnels des enseignes."
-          ]
-        }
-      ]
+          }
+        ]
+      }
     },
     {
       "slug": "cic-pulse",
@@ -1598,101 +1807,148 @@ var SITE = {
         "img/cic-4.jpg"
       ],
       "focus": "62% 40%",
-      "sections": [
-        {
-          "title": "Contexte et enjeux",
-          "text": [
-            "Le projet CIC Pulse est une proposition d’application mobile destinée à moderniser l’image du CIC auprès des 18–30 ans, dans un contexte où les néo-banques séduisent cette cible grâce à une UX simple, ludique et instantanée."
-          ],
-          "items": [
-            [
-              "Le défi utilisateur",
-              "Les 18–30 ans trouvent les banques traditionnelles complexes, peu lisibles et pas assez « fun ». Ils attendent de la rapidité, de la transparence, une visualisation claire, des récompenses et des conseils personnalisés."
-            ],
-            [
-              "Le défi business",
-              "Face à la croissance des néo-banques, le CIC doit rajeunir son image, proposer une app dédiée moderne, regagner des parts de marché et créer une relation durable avec un public volatile."
-            ],
-            [
-              "Le défi technique et réglementaire",
-              "L’application doit intégrer les normes de sécurité (SCA, RGPD, DSP2, DSP3), l’agrégation bancaire, l’épargne automatisée et un KYC simplifié, tout en restant fluide et agréable."
-            ],
-            [
-              "Le défi de positionnement",
-              "Créer une rupture UX tout en conservant la confiance traditionnelle associée à la marque CIC."
+      "story": {
+        "lead": "Une proposition d’application mobile pour moderniser l’image du CIC auprès des 18–30 ans, face aux néo-banques.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Défis",
+            "title": "Moderniser sans perdre la confiance",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Utilisateur",
+                    "Les banques semblent complexes et peu « fun ». Ils attendent rapidité, transparence, récompenses."
+                  ],
+                  [
+                    "Business",
+                    "Rajeunir l’image, regagner des parts de marché, fidéliser un public volatile."
+                  ],
+                  [
+                    "Technique et réglementaire",
+                    "SCA, RGPD, DSP2 et DSP3, agrégation bancaire, épargne automatisée, KYC simplifié."
+                  ],
+                  [
+                    "Positionnement",
+                    "Une rupture UX qui garde la confiance de la marque."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
             ]
-          ]
-        },
-        {
-          "title": "Démarche",
-          "items": [
-            [
-              "Analyse et compréhension",
-              "Étude du brief CIC, recherche secondaire sur les usages financiers des 18–30 ans, analyse du marché bancaire et des néo-banques (Revolut, Lydia, N26…) et des tendances UX : gamification, micro-learning, paiements instantanés."
-            ],
-            [
-              "Ateliers et cadrage",
-              "Problématique centrale : comment rendre la gestion d’argent intuitive, fluide et motivante pour une génération mobile-first ? Construction de proto-personas (Camille, Alexandre, Sophie) et d’un Product Vision Board."
-            ],
-            [
-              "Conception",
-              "Scénarios utilisateurs clés (paiement, épargne, supervision parentale), tri de cartes, arborescence, parcours fonctionnels, wireframes et concepts UX innovants (wallet thématique, agent IA bancaire), avec une proposition UX et DA cohérente avec un univers jeune, sécurisant et engageant."
+          },
+          {
+            "n": "03",
+            "label": "Démarche",
+            "title": "Analyser, cadrer, concevoir",
+            "mods": [
+              {
+                "t": "timeline",
+                "cols": [
+                  {
+                    "h": "Analyse",
+                    "li": [
+                      "Brief CIC",
+                      "Usages financiers des 18–30 ans",
+                      "Néo-banques : Revolut, Lydia, N26…",
+                      "Tendances UX"
+                    ]
+                  },
+                  {
+                    "h": "Cadrage",
+                    "li": [
+                      "Problématique : gestion d’argent intuitive et motivante",
+                      "Proto-personas : Camille, Alexandre, Sophie",
+                      "Product Vision Board"
+                    ]
+                  },
+                  {
+                    "h": "Conception",
+                    "li": [
+                      "Scénarios : paiement, épargne, supervision parentale",
+                      "Tri de cartes, arborescence",
+                      "Wireframes et concepts UX",
+                      "UX et DA cohérentes"
+                    ]
+                  }
+                ]
+              }
             ]
-          ],
-          "numbered": true
-        },
-        {
-          "title": "La solution",
-          "text": [
-            "La réponse s’articule autour de cinq piliers UX."
-          ],
-          "items": [
-            [
-              "Une app bancaire simple, ludique et moderne",
-              "Codes graphiques jeunes, micro-interactions, ton décontracté, tutoriel doux et rassurant, interface claire et lumineuse inspirée des néo-banques."
-            ],
-            [
-              "Un paiement entre amis ultra-fluide",
-              "Paiement P2P instantané, cagnottes, QR code ou mobile-to-mobile, carte virtuelle dès l’onboarding."
-            ],
-            [
-              "Une gestion budgétaire visuelle et intuitive",
-              "Wallets thématiques, catégorisation automatique, dashboard graphique, insights personnalisés."
-            ],
-            [
-              "Une épargne motivante et gamifiée",
-              "Objectifs visuels, arrondi automatique, règles programmables et système de récompenses via une monnaie virtuelle, les Waves, qui peuvent être reversées à des causes solidaires, utilisées pour obtenir des avantages ou valorisées dans un univers RSE."
-            ],
-            [
-              "Un assistant IA conversationnel intégré",
-              "Accompagnement bancaire personnalisé, réponses instantanées, réalisation d’opérations courantes (virements, blocages, paramétrage) : une alternative au conseiller, pensée pour les jeunes générations."
+          },
+          {
+            "n": "04",
+            "label": "Solution",
+            "title": "Cinq piliers",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Une app simple et ludique",
+                    "Codes jeunes, micro-interactions, ton décontracté."
+                  ],
+                  [
+                    "Paiement entre amis",
+                    "P2P instantané, cagnottes, QR code, carte virtuelle."
+                  ],
+                  [
+                    "Budget visuel",
+                    "Wallets thématiques, catégorisation automatique, insights."
+                  ],
+                  [
+                    "Épargne gamifiée",
+                    "Objectifs, arrondi automatique, récompenses en « Waves »."
+                  ],
+                  [
+                    "Assistant IA",
+                    "Opérations courantes et conseils, une alternative au conseiller."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": true
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": null
+              }
             ]
-          ],
-          "numbered": true
-        },
-        {
-          "title": "Résultats et suites",
-          "text": [
-            "Le projet répondait à un appel d’offres : il n’y a pas eu de tests utilisateurs formels sur le prototype final.",
-            "Bonus : un mode Parent / Jeune adulte intégré, pour une supervision légère et sans intrusivité, et un écosystème ouvert, compatible avec la multibancarisation."
-          ],
-          "items": [
-            [
-              "Une différenciation claire",
-              "Par rapport aux néo-banques, avec un positionnement pédagogique, responsable et moderne."
-            ],
-            [
-              "Une cohérence forte",
-              "Entre UX, direction artistique et stratégie produit."
-            ],
-            [
-              "Un concept réalisable",
-              "Une vision moderne du futur écosystème bancaire du CIC, centrée utilisateur, pédagogique et responsable, réalisable dans un cycle agile de 8 à 10 mois."
+          },
+          {
+            "n": "05",
+            "label": "Résultats",
+            "title": "Un concept réalisable",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Différenciation claire",
+                    "Positionnement pédagogique, responsable et moderne."
+                  ],
+                  [
+                    "Cohérence forte",
+                    "Entre UX, direction artistique et stratégie produit."
+                  ],
+                  [
+                    "Faisable",
+                    "Réalisable dans un cycle agile de 8 à 10 mois."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "note",
+                "text": "Réponse à un appel d’offres : pas de tests utilisateurs formels. Suite : prototype haute fidélité, test sur les trois personas, validation des Waves, du wallet thématique et de l’assistant IA."
+              }
             ]
-          ],
-          "note": "Améliorations envisagées : prototypage haute fidélité et test utilisateur sur les trois personas, affinement de la DA sur les micro-interactions, validation des fonctionnalités différenciantes (Waves, wallet thématique, assistant IA)."
-        }
-      ]
+          }
+        ]
+      }
     },
     {
       "slug": "scentsoft",
@@ -1723,49 +1979,132 @@ var SITE = {
         "img/sc-4.jpg"
       ],
       "focus": "50% 45%",
-      "sections": [
-        {
-          "title": "Contexte et enjeux",
-          "text": [
-            "Scentsoft est une plateforme de formulation de parfum en ligne. Pionnier dans son domaine, le projet a été initié par trois étudiantes diplômées de l’École Supérieure du Parfum de Paris. Nous étions chargés du développement et de la gestion de projet de leur produit.",
-            "Les clientes voulaient améliorer les conditions de formulation de parfum, dans le milieu scolaire comme professionnel, jugées fastidieuses et chronophages. Le défi : créer un outil à l’interface intuitive, avec une base de données et des forums pour communiquer."
-          ],
-          "items": [
-            [
-              "Identité visuelle et charte graphique",
-              "Après analyse de la concurrence, nous voulions une esthétique et un environnement favorables à l’apprentissage : des couleurs vives, un univers coloré et illustré, pour que l’utilisateur se sente concerné."
+      "story": {
+        "lead": "Une plateforme de formulation de parfum en ligne, initiée par trois étudiantes de l’École Supérieure du Parfum de Paris.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Contexte",
+            "title": "Rendre la formulation moins fastidieuse",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Identité visuelle",
+                    "Couleurs vives et univers illustré, pour favoriser l’apprentissage."
+                  ],
+                  [
+                    "Base de données",
+                    "Une base PHP pour manipuler les données via l’interface de formulation."
+                  ],
+                  [
+                    "Forum",
+                    "Une page fonctionnelle pour l’apprentissage collaboratif."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              }
             ],
-            [
-              "Une base de données",
-              "Une base de données PHP, pour manipuler les données fournies par les clientes à travers l’interface de formulation et le tableau de bord."
+            "intro": "Un outil à l’interface intuitive, avec une base de données et des forums, pour le milieu scolaire comme professionnel."
+          },
+          {
+            "n": "03",
+            "label": "Démarche",
+            "title": "En agile, par sprints",
+            "mods": [
+              {
+                "t": "timeline",
+                "cols": [
+                  {
+                    "h": "Cadrage",
+                    "li": [
+                      "Cahier des charges",
+                      "Benchmark et idéation",
+                      "Solutions et fonctionnalités",
+                      "Roadmap et priorisation"
+                    ]
+                  },
+                  {
+                    "h": "Conception",
+                    "li": [
+                      "Charte graphique et identité",
+                      "Maquettes UX et UI"
+                    ]
+                  },
+                  {
+                    "h": "Réalisation",
+                    "li": [
+                      "Développement WordPress",
+                      "Optimisation du site et SEO"
+                    ]
+                  }
+                ]
+              }
             ],
-            [
-              "Un forum",
-              "Une page forum fonctionnelle, pour favoriser les échanges et l’apprentissage collaboratif."
+            "intro": "Des sprints de deux mois, avec une réunion client à la même fréquence."
+          },
+          {
+            "n": "04",
+            "label": "Solution",
+            "title": "Stable, rapide, visible",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Des plugins adaptés",
+                    "Compatibles avec la base de données et entre eux : un WordPress stable et performant."
+                  ],
+                  [
+                    "Un travail SEO",
+                    "Pour une bonne visibilité dès le lancement."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": null
+              },
+              {
+                "t": "image",
+                "k": 2,
+                "cap": null
+              }
             ]
-          ]
-        },
-        {
-          "title": "Démarche",
-          "text": [
-            "Nous avons traduit la demande des clientes dans un cahier des charges. En méthode agile, nous avons travaillé par sprints de deux mois, avec une réunion client à la même fréquence pour réajuster les objectifs et le cahier des charges.",
-            "Les étapes : rédaction du cahier des charges, benchmark concurrentiel et idéation, recherche de solutions et de fonctionnalités, roadmap, priorisation et attribution des tâches, charte graphique et identité visuelle, maquettes UX et UI, développement WordPress, puis optimisation du site et du SEO."
-          ]
-        },
-        {
-          "title": "La solution",
-          "text": [
-            "Nous avons cherché des solutions et des fonctionnalités pour répondre aux exigences de base de la cliente, puis trouvé des plugins WordPress adaptés, compatibles avec la base de données et les autres plugins, pour garder un environnement WordPress stable et améliorer les performances.",
-            "Un travail sur le référencement SEO assure une bonne visibilité dès le lancement, pour favoriser le trafic."
-          ]
-        },
-        {
-          "title": "Ce que j’en retiens",
-          "text": [
-            "C’est ma première expérience en gestion de projet digital. Elle m’a fait découvrir l’organisation d’une équipe produit et un autre point de vue. Les tâches étaient organisées et réalisées par nous-mêmes, avec de la polyvalence : j’ai principalement réalisé l’UI Design et le développement web pendant la phase de création."
-          ]
-        }
-      ]
+          },
+          {
+            "n": "05",
+            "label": "Retour",
+            "title": "Ce que j’en retiens",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Une première",
+                    "Mon premier projet en gestion de projet digital."
+                  ],
+                  [
+                    "Une équipe autonome",
+                    "Les tâches étaient organisées et réalisées par nous-mêmes."
+                  ],
+                  [
+                    "Mon rôle",
+                    "Principalement l’UI design et le développement web."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "slug": "biodiveto",
@@ -1796,44 +2135,117 @@ var SITE = {
         "img/bio-4.jpg"
       ],
       "focus": "60% 45%",
-      "sections": [
-        {
-          "title": "Contexte et enjeux",
-          "text": [
-            "BiodiVeto est un cabinet de conseil basé sur la science, qui accompagne ses clients vers l’adoption et la valorisation de pratiques respectueuses et durables. Il s’engage en faveur du bien-être animal et de la durabilité, ce qui se reflète dans ses services d’audit, d’expertise et de formation.",
-            "Notre cliente venait de créer son entreprise. Notre mission : lui créer une charte et une identité graphiques fortes pour se démarquer de la concurrence, puis un site web à l’image de son entreprise : bienveillant, moral, qui met en avant son expertise."
-          ],
-          "items": [
-            [
-              "Identité et charte graphique",
-              "Notre cliente ne voulait pas retrouver le côté « brut et hospitalier » associé au monde agricole et vétérinaire. Des ateliers de Design Thinking ont traduit sa demande, et après plusieurs échanges nous avons trouvé une identité qui représente au mieux les valeurs de son entreprise."
+      "story": {
+        "lead": "Identité visuelle, site web et blog pour un cabinet de conseil naissant, engagé pour le bien-être animal.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Contexte",
+            "title": "Une jeune entreprise à faire exister",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Le client",
+                    "Un cabinet de conseil basé sur la science, qui venait de se créer."
+                  ],
+                  [
+                    "La mission",
+                    "Une charte et une identité fortes, puis un site à l’image de l’entreprise : bienveillant, moral, expert."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
             ],
-            [
-              "Site web, page blog et filtres",
-              "Elle ne voulait pas seulement un site vitrine. Nous avons proposé une page blog, mise à jour par la cliente via WordPress, avec un système de filtres pour trouver des articles plus pertinents."
+            "intro": "BiodiVeto accompagne ses clients vers des pratiques respectueuses et durables : audit, expertise, formation."
+          },
+          {
+            "n": "03",
+            "label": "Démarche",
+            "title": "Du benchmark au développement",
+            "mods": [
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Benchmark",
+                    "d": "Concurrence du secteur vétérinaire et animalier"
+                  },
+                  {
+                    "t": "Idéation"
+                  },
+                  {
+                    "t": "Synthèse des idées"
+                  },
+                  {
+                    "t": "Prototype, test, validation"
+                  },
+                  {
+                    "t": "Développement web",
+                    "d": "WordPress"
+                  }
+                ],
+                "cols": 5,
+                "numbered": true
+              }
             ]
-          ]
-        },
-        {
-          "title": "Démarche",
-          "text": [
-            "Avec notre équipe, nous avons d’abord traduit la demande du client, puis mené une recherche approfondie auprès de la concurrence du secteur vétérinaire et animalier, en analysant leurs sites pour en dégager les meilleures pratiques et tendances.",
-            "Les étapes : benchmark, idéation, synthèse des idées, création d’un prototype, test utilisateur et validation, puis développement web."
-          ]
-        },
-        {
-          "title": "La solution",
-          "text": [
-            "Entreprise naissante, BiodiVeto devait se démarquer rapidement : il fallait générer du trafic sur le site, augmenter le nombre d’abonnés sur les réseaux sociaux et le taux d’engagement. En plus du site web, nous avons réalisé des visuels pour les réseaux sociaux : une bannière LinkedIn et YouTube, des cartes de visite et des visuels Instagram."
-          ]
-        },
-        {
-          "title": "Suivi du projet",
-          "text": [
-            "Première phase réalisée avec notre équipe en freelance. Nous attendions alors les retours sur les KPI, à analyser fin juillet, pour adapter la demande en conséquence."
-          ]
-        }
-      ]
+          },
+          {
+            "n": "04",
+            "label": "Solutions",
+            "title": "Trois besoins, trois réponses",
+            "mods": [
+              {
+                "t": "pairs",
+                "items": [
+                  [
+                    "Identité",
+                    "Ne pas retrouver le côté « brut et hospitalier » du monde agricole et vétérinaire.",
+                    "Des ateliers de Design Thinking, pour une identité qui reflète les valeurs de l’entreprise."
+                  ],
+                  [
+                    "Site, blog et filtres",
+                    "Plus qu’un site vitrine.",
+                    "Une page blog mise à jour via WordPress, avec des filtres."
+                  ],
+                  [
+                    "Visibilité",
+                    "Se démarquer vite : trafic, abonnés, engagement.",
+                    "Bannière LinkedIn et YouTube, cartes de visite, visuels Instagram."
+                  ]
+                ],
+                "labels": [
+                  "Défi",
+                  "Solution"
+                ]
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": null
+              },
+              {
+                "t": "image",
+                "k": 2,
+                "cap": null
+              }
+            ]
+          },
+          {
+            "n": "05",
+            "label": "Suivi",
+            "title": "Première phase en freelance",
+            "mods": [
+              {
+                "t": "note",
+                "text": "Nous attendions les retours sur les KPI, à analyser fin juillet, pour adapter la demande en conséquence."
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "slug": "don-juan-ii",
@@ -1863,36 +2275,110 @@ var SITE = {
         "img/dj-4.jpg"
       ],
       "focus": "50% 30%",
-      "sections": [
-        {
-          "title": "Contexte et enjeux",
-          "text": [
-            "Refonte web du site du Don Juan II, de la création de wireframes à la maquette, en respectant une partie de la charte graphique pré-définie par les clients.",
-            "Le Don Juan II est la seule croisière gastronomique étoilée sur la Seine, créée par le chef Frédéric Anton : deux heures de navigation pour un dîner de prestige sur la plus belle avenue de Paris, en découvrant de nombreux monuments.",
-            "Le défi principal : réaliser un visuel et un ensemble graphique cohérents et séduisants, qui illustrent le côté luxueux du restaurant et son itinéraire, avec une expérience utilisateur qui permet de naviguer simplement."
-          ]
-        },
-        {
-          "title": "Démarche",
-          "text": [
-            "J’ai commencé par un wireframe du site pour me projeter dans le site final. J’ai choisi et adapté les couleurs existantes pour que le contraste entre l’arrière-plan et le texte, et entre l’arrière-plan et les boutons, soit accessible à tous. Plusieurs sites de restauration et de luxe m’ont servi de références pour les éléments graphiques.",
-            "Les étapes : benchmark concurrentiel, maquette UX, design system et identité graphique, puis maquette UI."
-          ]
-        },
-        {
-          "title": "La solution",
-          "text": [
-            "Le design d’interface met en avant l’univers du Don Juan II : les fruits de mer et produits de la pêche proposés à la carte, des produits frais et un savoir-faire unique. En accentuant le côté maritime, les plats sont présentés directement à l’écran pour que l’utilisateur se projette sur les tables du restaurant. Ils sont mis en valeur, détourés, dès le header de la page.",
-            "L’art déco fait partie de l’univers du Don Juan II : j’ai intégré quelques éléments de culture moderne qui y font écho."
-          ]
-        },
-        {
-          "title": "Suivi du projet",
-          "text": [
-            "Le projet avait pour seul but la refonte UI de l’interface, sans suivi de ses performances."
-          ]
-        }
-      ]
+      "story": {
+        "lead": "Refonte UI du site de la seule croisière gastronomique étoilée sur la Seine, créée par le chef Frédéric Anton.",
+        "sections": [
+          {
+            "n": "02",
+            "label": "Contexte",
+            "title": "Dîner de prestige sur la Seine",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Le défi",
+                    "Un visuel et un ensemble graphique cohérents, séduisants, qui illustrent le luxe du restaurant et son itinéraire."
+                  ],
+                  [
+                    "La contrainte",
+                    "Respecter une partie de la charte graphique définie par les clients, avec une navigation simple."
+                  ]
+                ],
+                "cols": 2,
+                "numbered": false
+              }
+            ],
+            "intro": "Deux heures de navigation pour découvrir les monuments de Paris."
+          },
+          {
+            "n": "03",
+            "label": "Démarche",
+            "title": "Du wireframe à la maquette",
+            "mods": [
+              {
+                "t": "flow",
+                "steps": [
+                  {
+                    "t": "Benchmark concurrentiel",
+                    "d": "Restauration et luxe"
+                  },
+                  {
+                    "t": "Maquette UX",
+                    "d": "Wireframe du site"
+                  },
+                  {
+                    "t": "Design system et identité",
+                    "d": "Couleurs adaptées pour un contraste accessible"
+                  },
+                  {
+                    "t": "Maquette UI"
+                  }
+                ],
+                "cols": 4,
+                "numbered": true
+              }
+            ]
+          },
+          {
+            "n": "04",
+            "label": "Solution",
+            "title": "L’univers maritime à l’écran",
+            "mods": [
+              {
+                "t": "cards",
+                "items": [
+                  [
+                    "Univers maritime",
+                    "Fruits de mer et produits de la pêche, des produits frais et un savoir-faire unique."
+                  ],
+                  [
+                    "Plats mis en valeur",
+                    "Détourés dès le header, pour se projeter sur les tables du restaurant."
+                  ],
+                  [
+                    "Art déco",
+                    "Quelques éléments de culture moderne y font écho."
+                  ]
+                ],
+                "cols": 3,
+                "numbered": false
+              },
+              {
+                "t": "image",
+                "k": 1,
+                "cap": null
+              },
+              {
+                "t": "image",
+                "k": 2,
+                "cap": null
+              }
+            ]
+          },
+          {
+            "n": "05",
+            "label": "Suivi",
+            "title": "Une refonte UI seule",
+            "mods": [
+              {
+                "t": "note",
+                "text": "Le projet avait pour seul but la refonte UI, sans suivi de ses performances."
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 };
@@ -2149,13 +2635,13 @@ var SITE = {
       quotes.map(function (q) { return '<blockquote class="pj-quote"><p>' + esc(q[0]) + '</p><cite>' + esc(q[1]) + '</cite></blockquote>'; }).join('') +
       (sec.note ? '<p class="pj-note">' + esc(sec.note) + '</p>' : '') + '</section>';
   }
-  function galleryHTML(p) {
+  function galleryHTML(p, used) {
+    used = used || {};
     if (p.images && p.images.length > 1) {
-      return '<div class="gallery">' + p.images.slice(1).map(function (src, k) {
-        return '<div class="shot"><img src="' + esc(src) + '" alt="' + esc((p.imageAlts && p.imageAlts[k + 1]) || (p.title + ', image ' + (k + 2))) + '" loading="lazy"></div>';
-      }).join('') + '</div>';
+      var rest = p.images.map(function (src, k) { return k > 0 && !used[k] ? '<div class="shot"><img src="' + esc(src) + '" alt="' + esc((p.imageAlts && p.imageAlts[k]) || (p.title + ', image ' + (k + 1))) + '" loading="lazy"></div>' : ''; }).join('');
+      return rest ? '<div class="gallery">' + rest + '</div>' : '';
     }
-    return '<div class="gallery"><div class="art">' + visual(p, 1) + '</div><div class="art">' + visual(p, 2) + '</div></div>';
+    return '';
   }
   function widen() {
     Array.prototype.forEach.call(document.querySelectorAll('#ovBody .shot img'), function (img) {
@@ -2163,15 +2649,34 @@ var SITE = {
       if (img.complete) mark(); else img.addEventListener('load', mark);
     });
   }
+  function modHTML(m, p, used) {
+    var i;
+    if (m.t === 'cards') return '<div class="cs-cards c' + (m.cols || 2) + '">' + m.items.map(function (it, k) { return '<article class="cs-card">' + (m.numbered ? '<span class="cs-ix mono">' + (k + 1) + '</span>' : '') + '<b>' + esc(it[0]) + '</b><p>' + esc(it[1]) + '</p></article>'; }).join('') + '</div>';
+    if (m.t === 'pairs') return '<div class="cs-pairs">' + m.items.map(function (it) {
+      var cols = '';
+      m.labels.forEach(function (lb, k) { if (it[k + 1]) cols += '<div><em>' + esc(lb) + '</em><p>' + esc(it[k + 1]) + '</p></div>'; });
+      return '<article class="cs-pair"><h3>' + esc(it[0]) + '</h3><div class="cs-pc">' + cols + '</div></article>';
+    }).join('') + '</div>';
+    if (m.t === 'timeline') return '<div class="cs-panel"><div class="cs-tl" style="--cols:' + m.cols.length + '">' + m.cols.map(function (c) { return '<div class="cs-col"><h4 class="mono">' + esc(c.h) + '</h4><i class="cs-dot"></i><ul>' + c.li.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>'; }).join('') + '</div></div>';
+    if (m.t === 'flow') return '<div class="cs-panel">' + flowHTML(m) + '</div>';
+    if (m.t === 'stats') return '<div class="cs-stats">' + m.items.map(function (it) { return '<div><b>' + esc(it[0]) + '</b><span>' + esc(it[1]) + '</span></div>'; }).join('') + '</div>';
+    if (m.t === 'quotes') return '<div class="cs-quotes">' + m.items.map(function (it) { return '<blockquote><p>' + esc(it[0]) + '</p><cite>' + esc(it[1]) + '</cite></blockquote>'; }).join('') + '</div>';
+    if (m.t === 'image') { used[m.k] = 1; return '<figure class="cs-img"><div class="shot"><img src="' + esc(p.images[m.k]) + '" alt="' + esc((p.imageAlts && p.imageAlts[m.k]) || (p.title + ', image ' + (m.k + 1))) + '" loading="lazy"></div>' + (m.cap ? '<figcaption>' + esc(m.cap) + '</figcaption>' : '') + '</figure>'; }
+    if (m.t === 'bullets') return '<ul class="cs-bullets">' + m.items.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>';
+    if (m.t === 'note') return '<p class="pj-note">' + esc(m.text) + '</p>';
+    if (m.t === 'screens' && p.screens) return '<div class="screens-wrap"><h2 class="mono">' + esc(p.screensTitle || 'Écrans') + '</h2><div class="screens">' + p.screens.map(function (sc) { return '<img src="' + esc(sc.src) + '" alt="' + esc(sc.alt) + '" loading="lazy">'; }).join('') + '</div></div>';
+    return '';
+  }
   function projectHTML(p, i) {
-    var prev = P[(i - 1 + n) % n], nxt = P[(i + 1) % n];
-    return '<header class="pj-head"><p class="eyebrow mono">' + (i + 1) + ' / ' + n + ' · ' + metaLine(p) + '</p><h1 id="ovTitle">' + esc(p.title) + '</h1><p class="lead">' + esc(p.summary) + '</p></header>' +
+    var prev = P[(i - 1 + n) % n], nxt = P[(i + 1) % n], used = {}, st = p.story;
+    var secs = st.sections.map(function (sc) {
+      return '<section class="cs-sec"><header class="cs-sh"><p class="mono">' + esc(sc.n) + '. ' + esc(sc.label) + '</p><h2>' + esc(sc.title) + '</h2>' + (sc.intro ? '<p class="cs-intro">' + esc(sc.intro) + '</p>' : '') + '</header>' + sc.mods.map(function (m) { return modHTML(m, p, used); }).join('') + '</section>';
+    }).join('');
+    return '<nav class="cs-crumb" aria-label="Fil d’Ariane"><span>' + esc(SITE.name) + '</span><i>/</i><b>' + esc(p.name) + '</b></nav>' +
+      '<header class="cs-head"><h1 id="ovTitle">' + esc(p.title) + '</h1><p class="mono cs-kicker">01. Aperçu · ' + (i + 1) + ' / ' + n + ' · ' + metaLine(p) + '</p><p class="cs-lead">' + esc(st.lead) + '</p></header>' +
       '<div class="art hero">' + visual(p, 0) + '</div>' +
       '<dl class="facts row">' + (p.org ? '<div><dt>Client</dt><dd>' + esc(p.org) + '</dd></div>' : '') + '<div><dt>Rôle</dt><dd>' + esc(p.role) + '</dd></div>' + (p.period ? '<div><dt>Période</dt><dd>' + esc(p.period) + '</dd></div>' : '') + (p.dur ? '<div><dt>Durée</dt><dd>' + esc(p.dur) + '</dd></div>' : '') + (p.tools ? '<div><dt>Outils</dt><dd>' + esc(p.tools) + '</dd></div>' : '') + '</dl>' +
-      (p.highlight ? '<div class="pj-key"><b>' + esc(p.highlight.value) + '</b><span>' + esc(p.highlight.label) + '</span></div>' : '') +
-      '<div class="pj-sections">' + p.sections.map(sectionHTML).join('') + '</div>' +
-      (p.screens ? '<div class="screens-wrap"><h2 class="mono">' + esc(p.screensTitle || 'Écrans') + '</h2><div class="screens">' + p.screens.map(function (sc) { return '<img src="' + esc(sc.src) + '" alt="' + esc(sc.alt) + '" loading="lazy">'; }).join('') + '</div></div>' : '') +
-      galleryHTML(p) +
+      secs + galleryHTML(p, used) +
       '<nav class="pj-nav" aria-label="Autres projets"><a href="#' + prev.slug + '"><span class="mono">← Précédent</span><b>' + esc(prev.name) + '</b></a><a href="#' + nxt.slug + '"><span class="mono">Suivant →</span><b>' + esc(nxt.name) + '</b></a></nav>';
   }
   function projLinks(slugs) {
