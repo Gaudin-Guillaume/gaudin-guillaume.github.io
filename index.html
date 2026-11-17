@@ -114,7 +114,6 @@ img { max-width: 100%; }
 .nav a { text-decoration: none; padding: 8px 16px; border-radius: 999px; font-weight: 500; font-size: 14px; color: var(--ink-2); transition: background .25s, color .25s; }
 .nav a:hover { color: var(--ink); background: var(--glass-a); }
 .nav a.pill { color: var(--ink); background: linear-gradient(150deg, var(--glass-a), var(--glass-b)); box-shadow: inset 0 0 0 1px var(--glass-edge), 0 8px 20px -14px rgba(70, 58, 36, .35); }
-.hint { text-align: center; color: var(--ink-2); margin: 16px 0 0; font-size: 14px; min-height: 1.5em; }
 .stage { position: relative; display: grid; place-items: center; padding: calc(var(--tabh) + 16px) 0 10px; overflow-x: clip; }
 
 /* Pastille « disponible » */
@@ -280,23 +279,33 @@ img { max-width: 100%; }
 .ce-t { left: 6px; right: 18px; top: -2px; height: 4px; transform: rotateX(90deg); }
 .ce-b { left: 6px; right: 18px; bottom: -2px; height: 4px; transform: rotateX(-90deg); }
 
-/* Post-it : mots écrits à la main sur la couverture */
+/* Post-it 3D : pile de feuilles collées en haut, bas décollé de la couverture, ombre portée */
 .pi {
   --pw: calc(var(--fw) * .33);
-  position: absolute; margin: 0; box-sizing: border-box; width: var(--pw); aspect-ratio: 1; padding: calc(var(--pw) * .17) calc(var(--pw) * .09) calc(var(--pw) * .08);
-  display: grid; place-items: center; text-align: center; pointer-events: none;
+  position: absolute; margin: 0; width: var(--pw); height: var(--pw);
+  transform-style: preserve-3d; transform: translateZ(2px) rotate(var(--r)); pointer-events: none;
+}
+.pi-sh { position: absolute; inset: 9% -1% -9% 5%; background: rgba(50, 38, 15, .5); filter: blur(9px); border-radius: 6px; transform: translateZ(.3px); backface-visibility: hidden; }
+.pi-card {
+  position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 0; transform: rotateX(7deg);
+  animation: pi-stick .75s cubic-bezier(.3, 1.3, .5, 1) both var(--d, .5s);
+}
+.pl { position: absolute; inset: 0; margin: 0; border-radius: 2px 2px 14px 2px; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: color-mix(in srgb, var(--pi-b) 78%, #6b5a1a); }
+.pl:nth-child(1) { transform: translateZ(.4px); }
+.pl:nth-child(2) { transform: translateZ(1px); background: color-mix(in srgb, var(--pi-b) 90%, #6b5a1a); }
+.pi-top {
+  box-sizing: border-box; padding: calc(var(--pw) * .17) calc(var(--pw) * .09) calc(var(--pw) * .08); transform: translateZ(1.7px);
+  display: grid; place-items: center; text-align: center;
   font: 600 calc(var(--fw) * .05)/1.02 "Caveat", "Bradley Hand", "Segoe Print", cursive; color: #2c3b57; text-wrap: balance;
   background: linear-gradient(172deg, var(--pi-a), var(--pi-b));
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 12px 14px -9px rgba(60, 45, 20, .5), 0 2px 3px rgba(60, 45, 20, .18);
-  border-radius: 2px 2px 14px 2px; transform: rotate(var(--r)); transform-origin: 50% 0;
-  animation: pi-stick .7s cubic-bezier(.3, 1.3, .5, 1) both var(--d, .5s);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
 }
-.pi::before { content: ""; position: absolute; inset: 0 0 auto; height: 15%; background: linear-gradient(180deg, rgba(255, 255, 255, .5), transparent); }
-.pi::after { content: ""; position: absolute; right: 0; bottom: 0; width: 22%; height: 22%; background: linear-gradient(315deg, rgba(60, 45, 20, .16) 50%, transparent 50%); border-radius: 0 0 14px 0; }
+.pi-top::before { content: ""; position: absolute; inset: 0 0 auto; height: 15%; border-radius: 2px 2px 0 0; background: linear-gradient(180deg, rgba(255, 255, 255, .5), transparent); }
+.pi-top::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, transparent 55%, rgba(60, 45, 20, .13)); }
 .pi-1 { --pi-a: #fff0a0; --pi-b: #ffe272; --r: -4deg; left: 8%; top: 18%; }
 .pi-2 { --pi-a: #ffd3cc; --pi-b: #ffbcb0; --r: 3.5deg; --d: .65s; left: 47%; top: 30%; }
-@media (max-width: 600px) { .pi-1 { top: 13%; } .pi-2 { top: 24%; } }
-@keyframes pi-stick { from { opacity: 0; transform: translateY(-14px) scale(1.18) rotate(calc(var(--r) - 6deg)); } to { opacity: 1; transform: rotate(var(--r)); } }
+@media (max-width: 600px) { .pi-1 { top: 13%; } .pi-2 { top: 26%; left: 43%; } }
+@keyframes pi-stick { from { opacity: 0; transform: translateZ(28px) rotateX(40deg); } to { opacity: 1; transform: rotateX(7deg); } }
 
 /* Trombone : pincé sur la tranche droite de la couverture (boucles avant/arrière + coudes autour de l'épaisseur) */
 .clip { --wire: #a6aeb9; position: absolute; right: 0; top: 24%; width: 0; height: 28px; transform-style: preserve-3d; pointer-events: none; }
@@ -558,7 +567,6 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
 .fold-btn { display: none; width: max-content; margin: 14px auto 0; border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 8px 18px; border-radius: 999px; font-weight: 500; font-size: 14px; cursor: pointer; }
 .fold-btn:hover { background: var(--glass-a); }
 @media (max-width: 939px) {
-  body.folder-open .hint { display: none; }
   body.folder-open .fold-btn { display: block; }
 }
 /* Feuille « profil » : première page quand le dossier s'ouvre sur un petit écran */
@@ -584,7 +592,6 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
   .live-wrap { margin-top: 0; }
   .stage { padding: calc(var(--tabh) + clamp(10px, 2.2svh, 22px)) 0 clamp(6px, 1.4svh, 14px); }
   main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: clamp(14px, 3.4svh, 32px); }
-  .hint { margin: clamp(6px, 1.4svh, 14px) 0 0; padding: 0 8px; font-size: 13px; min-height: 0; height: 36px; display: flex; align-items: center; justify-content: center; }
   .fold-btn { margin-top: clamp(6px, 1.4svh, 14px) !important; height: 36px; padding: 0 18px !important; }
   .foot { padding-top: 14px; margin-top: auto; }
   .btn-in, .theme { width: 36px; height: 36px; }
@@ -628,7 +635,7 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0s !important; }
   .live-dot::after { animation: none; }
-  .pi { animation: none; }
+  .pi-card { animation: none; }
 }
 </style>
 </head>
@@ -665,8 +672,6 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
             <div class="cmid">
               <div class="face outside" id="outside">
                 <span class="tabx mono" data-bind="year">2026</span>
-                <p class="pi pi-1" aria-hidden="true">Bienvenue&nbsp;! Feuillette librement.</p>
-                <p class="pi pi-2" aria-hidden="true">Un projet en tête&nbsp;? Écris-moi&nbsp;!</p>
                 <div class="cv">
                   <div class="cv-top">
                     <span class="swatches" id="swatches" aria-hidden="true"></span>
@@ -698,6 +703,8 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
                 <button class="close-btn" id="closeBtn" type="button">Refermer le dossier</button>
               </div>
               <i class="cedge ce-r" aria-hidden="true"></i><i class="cedge ce-t" aria-hidden="true"></i><i class="cedge ce-b" aria-hidden="true"></i>
+              <div class="pi pi-1" aria-hidden="true"><i class="pi-sh"></i><div class="pi-card"><i class="pl"></i><i class="pl"></i><p class="pl pi-top">Bienvenue&nbsp;! Feuillette librement.</p></div></div>
+              <div class="pi pi-2" aria-hidden="true"><i class="pi-sh"></i><div class="pi-card"><i class="pl"></i><i class="pl"></i><p class="pl pi-top">Un projet en tête&nbsp;? Écris-moi&nbsp;!</p></div></div>
               <div class="clip" aria-hidden="true">
                 <svg class="clip-b" viewBox="0 0 34 28"><g class="m"><path d="M34 3H14A11 11 0 0 0 14 25H34"/><path d="M34 9H20A5 5 0 0 0 20 19H34"/></g></svg>
                 <svg class="clip-br" style="top:3px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg><svg class="clip-br" style="top:9px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg><svg class="clip-br" style="top:19px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg><svg class="clip-br" style="top:25px" viewBox="0 0 6 9.2"><path class="m" d="M0 1.3H1A3.3 3.3 0 0 1 1 7.9H0"/></svg>
@@ -709,7 +716,6 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
       </div>
     </div>
   </div>
-  <p class="hint" id="hint">Cliquez sur le dossier pour l’ouvrir.</p>
   <button class="fold-btn" id="foldBtn" type="button">Refermer le dossier</button>
 </main>
 <footer class="foot" id="footer">
@@ -2526,7 +2532,7 @@ var SITE = {
 
   /* --- Le dossier --- */
   var scene = $('#scene'), deck = $('#deck'), outside = $('#outside'), inside = $('#inside');
-  var sheetsEl = $('#sheets'), dotsEl = $('#dots'), hint = $('#hint'), sheets = [], dots = [], cur = 0, lock = false;
+  var sheetsEl = $('#sheets'), dotsEl = $('#dots'), sheets = [], dots = [], cur = 0, lock = false;
 
   var narrowMQ = window.matchMedia('(max-width: 939px)');
   function offset() { return narrowMQ.matches ? 1 : 0; }
@@ -2578,14 +2584,10 @@ var SITE = {
     box.addEventListener('pointercancel', function () { on = false; }, { passive: true });
     box.addEventListener('click', function (e) { if (Date.now() - swipedAt < 450) { e.preventDefault(); e.stopPropagation(); } }, true);
   })();
-  function hintText(v) {
-    var small = narrowMQ.matches;
-    return v ? (small ? 'Glissez pour changer de page, touchez pour ouvrir.' : 'Cliquez sur une feuille pour ouvrir le projet. Les flèches changent de feuille.') : (small ? 'Touchez le dossier pour l’ouvrir.' : 'Cliquez sur le dossier pour l’ouvrir.');
-  }
   function setOpen(v, focus) {
     scene.classList.toggle('open', v);
     deck.inert = !v; outside.inert = v; inside.inert = !v; tilt();
-    hint.textContent = hintText(v); document.body.classList.toggle('folder-open', v);
+    document.body.classList.toggle('folder-open', v);
     if (focus) setTimeout(function () { (v ? $('#next') : $('#openBtn')).focus({ preventScroll: true }); }, 750);
   }
   $('#cover').addEventListener('click', function () { if (!scene.classList.contains('open')) setOpen(true, true); });
@@ -2594,8 +2596,7 @@ var SITE = {
   $('#next').addEventListener('click', next);
   $('#prev').addEventListener('click', prev);
   buildSheets();
-  hint.textContent = hintText(false);
-  var onNarrow = function () { buildSheets(); hint.textContent = hintText(scene.classList.contains('open')); };
+  var onNarrow = function () { buildSheets(); };
   if (narrowMQ.addEventListener) narrowMQ.addEventListener('change', onNarrow); else if (narrowMQ.addListener) narrowMQ.addListener(onNarrow);
 
   /* --- Inclinaison 3D : position de repos selon l'état, puis légère réaction à la souris --- */
