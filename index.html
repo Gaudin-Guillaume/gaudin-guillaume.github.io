@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='5' y='7' width='22' height='20' rx='5' fill='%23efebe4' stroke='%23b8b2a4'/%3E%3Ccircle cx='21' cy='13' r='2.5' fill='%238fb3a0'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..700&family=Caveat:wght@500..700&display=swap">
 <style>
 /* Glace et perle : fond beige clair, surfaces de verre dépoli, couleur en petites touches. */
 :root {
@@ -279,6 +279,24 @@ img { max-width: 100%; }
 .ce-r { top: 18px; bottom: 18px; right: -2px; width: 4px; transform: rotateY(90deg); }
 .ce-t { left: 6px; right: 18px; top: -2px; height: 4px; transform: rotateX(90deg); }
 .ce-b { left: 6px; right: 18px; bottom: -2px; height: 4px; transform: rotateX(-90deg); }
+
+/* Post-it : mots écrits à la main sur la couverture */
+.pi {
+  --pw: calc(var(--fw) * .33);
+  position: absolute; margin: 0; box-sizing: border-box; width: var(--pw); aspect-ratio: 1; padding: calc(var(--pw) * .17) calc(var(--pw) * .09) calc(var(--pw) * .08);
+  display: grid; place-items: center; text-align: center; pointer-events: none;
+  font: 600 calc(var(--fw) * .05)/1.02 "Caveat", "Bradley Hand", "Segoe Print", cursive; color: #2c3b57; text-wrap: balance;
+  background: linear-gradient(172deg, var(--pi-a), var(--pi-b));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset, 0 12px 14px -9px rgba(60, 45, 20, .5), 0 2px 3px rgba(60, 45, 20, .18);
+  border-radius: 2px 2px 14px 2px; transform: rotate(var(--r)); transform-origin: 50% 0;
+  animation: pi-stick .7s cubic-bezier(.3, 1.3, .5, 1) both var(--d, .5s);
+}
+.pi::before { content: ""; position: absolute; inset: 0 0 auto; height: 15%; background: linear-gradient(180deg, rgba(255, 255, 255, .5), transparent); }
+.pi::after { content: ""; position: absolute; right: 0; bottom: 0; width: 22%; height: 22%; background: linear-gradient(315deg, rgba(60, 45, 20, .16) 50%, transparent 50%); border-radius: 0 0 14px 0; }
+.pi-1 { --pi-a: #fff0a0; --pi-b: #ffe272; --r: -4deg; left: 8%; top: 18%; }
+.pi-2 { --pi-a: #ffd3cc; --pi-b: #ffbcb0; --r: 3.5deg; --d: .65s; left: 47%; top: 30%; }
+@media (max-width: 600px) { .pi-1 { top: 13%; } .pi-2 { top: 24%; } }
+@keyframes pi-stick { from { opacity: 0; transform: translateY(-14px) scale(1.18) rotate(calc(var(--r) - 6deg)); } to { opacity: 1; transform: rotate(var(--r)); } }
 
 /* Trombone : pincé sur la tranche droite de la couverture (boucles avant/arrière + coudes autour de l'épaisseur) */
 .clip { --wire: #a6aeb9; position: absolute; right: 0; top: 24%; width: 0; height: 28px; transform-style: preserve-3d; pointer-events: none; }
@@ -610,6 +628,7 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0s !important; }
   .live-dot::after { animation: none; }
+  .pi { animation: none; }
 }
 </style>
 </head>
@@ -646,6 +665,8 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
             <div class="cmid">
               <div class="face outside" id="outside">
                 <span class="tabx mono" data-bind="year">2026</span>
+                <p class="pi pi-1" aria-hidden="true">Bienvenue&nbsp;! Feuillette librement.</p>
+                <p class="pi pi-2" aria-hidden="true">Un projet en tête&nbsp;? Écris-moi&nbsp;!</p>
                 <div class="cv">
                   <div class="cv-top">
                     <span class="swatches" id="swatches" aria-hidden="true"></span>
