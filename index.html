@@ -449,19 +449,47 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
   .gallery { grid-template-columns: 1fr; }
   .nav a { padding: 8px 12px; }
 }
+/* Bouton pour refermer le dossier (quand la couverture n'est plus visible) */
+.fold-btn { display: none; width: max-content; margin: 8px auto 0; border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 8px 18px; border-radius: 999px; font-weight: 500; font-size: 14px; cursor: pointer; }
+.fold-btn:hover { background: var(--glass-a); }
+@media (max-width: 939px) {
+  body.folder-open .hint { display: none; }
+  body.folder-open .fold-btn { display: block; }
+}
+/* Feuille « profil » : première page quand le dossier s'ouvre sur un petit écran */
+.about-sheet .ab-top { display: flex; align-items: flex-start; gap: 16px; padding: 8px 6px 0 8px; }
+.about-sheet .sticker { --sw: 80px; }
+.about-sheet h3 { font-size: 19px; margin: 6px 0 0; }
+.about-sheet .desc { -webkit-line-clamp: 3; }
+.about-sheet .tools { margin: 0; position: relative; z-index: 2; }
+.about-sheet .tools-head { min-height: 18px; }
+.about-sheet .tools-row { min-height: 0; padding: 8px 4px 2px; gap: 8px 12px; }
+.about-sheet .tool { --tw: 44px; }
+.about-sheet .tool-in { padding: 6px; border-radius: 13px; }
+
 /* ---------- Téléphone ---------- */
 @media (max-width: 600px) {
-  :root { --fh: calc(var(--fw) * 1.65); }
-  .hint { margin-top: 2px; padding: 0 8px; }
+  :root { --fh: calc(var(--fw) * 1.32); }
+  body { padding-block: calc(10px + env(safe-area-inset-top, 0px)) calc(16px + env(safe-area-inset-bottom, 0px)); }
+  .top { gap: 6px 12px; }
+  .brand b { font-size: 16px; }
+  .brand span { font-size: 12px; }
+  .nav a { padding: 7px 12px; font-size: 13px; }
+  .live-wrap { margin-top: 10px; }
+  .stage { padding: calc(var(--tabh) + 6px) 0 4px; }
+  .hint { margin: 0; padding: 0 8px; font-size: 13px; min-height: 0; }
+  .foot { padding-top: 14px; margin-top: auto; }
+  .btn-in, .theme { width: 36px; height: 36px; }
   .live { font-size: 13px; }
   .tabx { width: 104px; }
   .back .tabx, .outside .tabx { right: 22px; }
   .cv { inset: 28px 24px 24px 34px; }
   .cv h2 { font-size: clamp(34px, 11.5vw, 44px); }
   .sheet { padding: 12px; gap: 10px; border-radius: 14px; }
-  .sheet .art { aspect-ratio: 2.1 / 1; }
+  .sheet .art { aspect-ratio: 2.7 / 1; }
   .sheet h3 { font-size: 19px; }
-  .sheet .desc { font-size: 13px; }
+  .sheet .desc { font-size: 13px; -webkit-line-clamp: 2; }
+  .sheet .tags { display: none; }
   .sheet .per { display: none; }
   .s-count { white-space: nowrap; }
   .tags span { font-size: 9.5px; padding: 2px 8px; }
@@ -556,6 +584,7 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
     </div>
   </div>
   <p class="hint" id="hint">Cliquez sur le dossier pour l’ouvrir.</p>
+  <button class="fold-btn" id="foldBtn" type="button">Refermer le dossier</button>
 </main>
 <footer class="foot" id="footer">
   <span class="mono" id="foot"></span>
@@ -1964,20 +1993,31 @@ var SITE = {
   var scene = $('#scene'), deck = $('#deck'), outside = $('#outside'), inside = $('#inside');
   var sheetsEl = $('#sheets'), dotsEl = $('#dots'), hint = $('#hint'), sheets = [], dots = [], cur = 0, lock = false;
 
-  P.forEach(function (p, i) {
-    var s = document.createElement('article');
-    s.className = 'sheet';
-    s.innerHTML = '<div class="art">' + visual(p, 0) + '</div><div class="s-body"><div class="s-meta"><span class="eyebrow mono">' + metaLine(p) + '</span><span class="s-count mono">' + (i + 1) + ' / ' + n + '</span></div><h3>' + esc(p.title) + '</h3><p class="desc">' + esc(p.summary) + '</p>' + tags(p) +
-      '<a class="cta" href="#' + p.slug + '"><span>Voir le projet</span><span class="cta-ic" aria-hidden="true">→</span></a></div>';
-    sheetsEl.appendChild(s); sheets.push(s);
-    var d = document.createElement('button');
-    d.type = 'button'; d.className = 'dot'; d.setAttribute('aria-label', 'Projet ' + (i + 1) + ' : ' + p.name);
-    d.addEventListener('click', function () { cur = i; render(); });
-    dotsEl.appendChild(d); dots.push(d);
-  });
+  var narrowMQ = window.matchMedia('(max-width: 939px)');
+  function offset() { return narrowMQ.matches ? 1 : 0; }
+  function aboutSheetHTML() {
+    return '<div class="ab-top"><div class="ab-st">' + stickerHTML() + '</div><div><p class="eyebrow mono">Qui je suis</p><h3>' + esc(SITE.hello) + '</h3></div></div>' +
+      '<p class="desc">' + esc(SITE.short) + '</p>' + toolsHTML() +
+      '<a class="cta" href="#a-propos"><span>Mon profil</span><span class="cta-ic" aria-hidden="true">→</span></a>';
+  }
+  function buildSheets() {
+    sheetsEl.innerHTML = ''; dotsEl.innerHTML = ''; sheets = []; dots = []; cur = 0;
+    (narrowMQ.matches ? [null] : []).concat(P).forEach(function (p, k) {
+      var i = k - offset(), s = document.createElement('article');
+      s.className = 'sheet' + (p ? '' : ' about-sheet');
+      s.innerHTML = p ? '<div class="art">' + visual(p, 0) + '</div><div class="s-body"><div class="s-meta"><span class="eyebrow mono">' + metaLine(p) + '</span><span class="s-count mono">' + (i + 1) + ' / ' + n + '</span></div><h3>' + esc(p.title) + '</h3><p class="desc">' + esc(p.summary) + '</p>' + tags(p) +
+        '<a class="cta" href="#' + p.slug + '"><span>Voir le projet</span><span class="cta-ic" aria-hidden="true">→</span></a></div>' : aboutSheetHTML();
+      sheetsEl.appendChild(s); sheets.push(s);
+      var d = document.createElement('button');
+      d.type = 'button'; d.className = 'dot'; d.setAttribute('aria-label', p ? 'Projet ' + (i + 1) + ' : ' + p.name : 'Mon profil');
+      d.addEventListener('click', function () { cur = k; render(); });
+      dotsEl.appendChild(d); dots.push(d);
+    });
+    render();
+  }
   function render() {
     sheets.forEach(function (s, i) {
-      var pos = (i - cur + n) % n;
+      var pos = (i - cur + sheets.length) % sheets.length;
       s.dataset.pos = pos; s.inert = pos !== 0; s.setAttribute('aria-hidden', pos !== 0 ? 'true' : 'false');
     });
     dots.forEach(function (d, i) { d.setAttribute('aria-current', i === cur ? 'true' : 'false'); });
@@ -1986,29 +2026,37 @@ var SITE = {
     if (lock) return; lock = true;
     var leaving = sheets[cur];
     leaving.classList.add('fly');
-    cur = (cur + 1) % n; render();
+    cur = (cur + 1) % sheets.length; render();
     setTimeout(function () { leaving.style.transition = 'none'; leaving.classList.remove('fly'); void leaving.offsetWidth; leaving.style.transition = ''; lock = false; }, 420);
   }
   function prev() {
     if (lock) return; lock = true;
-    cur = (cur - 1 + n) % n;
+    cur = (cur - 1 + sheets.length) % sheets.length;
     var incoming = sheets[cur];
     incoming.style.transition = 'none'; incoming.classList.add('fly');
     render(); void incoming.offsetWidth;
     incoming.style.transition = ''; incoming.classList.remove('fly');
     setTimeout(function () { lock = false; }, 420);
   }
+  function hintText(v) {
+    var small = narrowMQ.matches;
+    return v ? (small ? 'Touchez une feuille pour l’ouvrir.' : 'Cliquez sur une feuille pour ouvrir le projet. Les flèches changent de feuille.') : (small ? 'Touchez le dossier pour l’ouvrir.' : 'Cliquez sur le dossier pour l’ouvrir.');
+  }
   function setOpen(v, focus) {
     scene.classList.toggle('open', v);
     deck.inert = !v; outside.inert = v; inside.inert = !v; tilt();
-    hint.textContent = v ? 'Cliquez sur une feuille pour ouvrir le projet. Les flèches changent de feuille.' : 'Cliquez sur le dossier pour l’ouvrir.';
+    hint.textContent = hintText(v); document.body.classList.toggle('folder-open', v);
     if (focus) setTimeout(function () { (v ? $('#next') : $('#openBtn')).focus({ preventScroll: true }); }, 750);
   }
   $('#cover').addEventListener('click', function () { if (!scene.classList.contains('open')) setOpen(true, true); });
   $('#closeBtn').addEventListener('click', function (e) { e.stopPropagation(); setOpen(false, true); });
+  $('#foldBtn').addEventListener('click', function () { setOpen(false, false); });
   $('#next').addEventListener('click', next);
   $('#prev').addEventListener('click', prev);
-  render();
+  buildSheets();
+  hint.textContent = hintText(false);
+  var onNarrow = function () { buildSheets(); hint.textContent = hintText(scene.classList.contains('open')); };
+  if (narrowMQ.addEventListener) narrowMQ.addEventListener('change', onNarrow); else if (narrowMQ.addListener) narrowMQ.addListener(onNarrow);
 
   /* --- Inclinaison 3D : position de repos selon l'état, puis légère réaction à la souris --- */
   var rig = $('#rig'), ptr = { x: 0, y: 0 }, ang = (window.matchMedia('(max-width: 600px)').matches ? { rx: 8, ry: -12 } : { rx: 11, ry: -22 }), raf = 0;
@@ -2110,7 +2158,7 @@ var SITE = {
     P.forEach(function (p, i) { if (p.slug === h) idx = i; });
     if (idx >= 0) {
       if (!scene.classList.contains('open')) setOpen(true, false);
-      cur = idx; render(); showOverlay(projectHTML(P[idx], idx));
+      cur = idx + offset(); render(); showOverlay(projectHTML(P[idx], idx));
     } else if (h === 'a-propos') showOverlay(aboutHTML());
     else hideOverlay();
   }
@@ -2124,8 +2172,9 @@ var SITE = {
     if (ov.classList.contains('show')) {
       if (e.key === 'Escape') closeOverlay();
       else if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && P.some(function (p) { return '#' + p.slug === location.hash; })) {
-        var i = cur + (e.key === 'ArrowRight' ? 1 : -1);
-        location.hash = P[(i + n) % n].slug;
+        var h = decodeURIComponent(location.hash.slice(1)), at = 0;
+        P.forEach(function (p, j) { if (p.slug === h) at = j; });
+        location.hash = P[(at + (e.key === 'ArrowRight' ? 1 : -1) + n) % n].slug;
       }
       return;
     }
