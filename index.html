@@ -481,9 +481,11 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
   .brand b { font-size: 16px; }
   .brand span { font-size: 12px; }
   .nav a { padding: 7px 12px; font-size: 13px; }
-  .live-wrap { margin-top: clamp(10px, 2.4svh, 22px); }
+  .live-wrap { margin-top: 0; }
   .stage { padding: calc(var(--tabh) + clamp(10px, 2.2svh, 22px)) 0 clamp(6px, 1.4svh, 14px); }
-  .hint { margin: clamp(6px, 1.4svh, 14px) 0 0; padding: 0 8px; font-size: 13px; min-height: 0; }
+  main { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-block: clamp(14px, 3.4svh, 32px); }
+  .hint { margin: clamp(6px, 1.4svh, 14px) 0 0; padding: 0 8px; font-size: 13px; min-height: 0; height: 36px; display: flex; align-items: center; justify-content: center; }
+  .fold-btn { margin-top: clamp(6px, 1.4svh, 14px) !important; height: 36px; padding: 0 18px !important; }
   .foot { padding-top: 14px; margin-top: auto; }
   .btn-in, .theme { width: 36px; height: 36px; }
   .live { font-size: 13px; }
