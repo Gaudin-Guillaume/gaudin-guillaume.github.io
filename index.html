@@ -331,26 +331,20 @@ img { max-width: 100%; }
 @property --cut { syntax: "<length>"; inherits: false; initial-value: 0px; }
 .tools { margin: 14px 0 12px; }
 .tools-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 22px; color: var(--ink-2); }
-.tools-restore { border: 0; background: none; cursor: pointer; color: var(--accent); padding: 2px 0; }
-.tools-restore:hover { text-decoration: underline; }
 .tools-row { display: flex; flex-wrap: wrap; gap: 12px 14px; padding: 12px 6px 4px; min-height: 76px; }
 .tool {
-  --tw: 54px; --cut: 0px; position: relative; flex: none; width: var(--tw); height: var(--tw); padding: 0; border: 0; background: none; cursor: pointer;
+  --tw: 54px; --cut: 0px; position: relative; flex: none; width: var(--tw); height: var(--tw); padding: 0; border: 0; background: none; display: block; cursor: default;
   transform: rotate(var(--r)); transition: transform .3s cubic-bezier(.3, 1.4, .5, 1), --cut .25s, opacity .4s;
   filter: drop-shadow(0 1px 0 rgba(40, 30, 15, .1)) drop-shadow(0 6px 8px rgba(40, 30, 15, .25));
 }
 .tool-in { position: absolute; inset: 0; padding: 7px; background: #fff; border-radius: 16px; display: grid; place-items: center; clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%); }
 .tool-in svg { display: block; width: 100%; height: 100%; }
-.tool .peel-w { width: var(--cut); height: var(--cut); }
-.tool:hover, .tool:focus-visible { --cut: 15px; transform: rotate(var(--r)) translateY(-3px) scale(1.07); }
-.tool.peeling { --cut: 30px; transform: translate(26px, -86px) rotate(calc(var(--r) + 32deg)) scale(1.12); opacity: 0; pointer-events: none; transition: transform .52s cubic-bezier(.5, 0, .9, .5), opacity .5s .08s, --cut .2s; }
 @keyframes slap { from { transform: rotate(var(--r)) scale(1.7); opacity: 0; } to { transform: rotate(var(--r)) scale(1); opacity: 1; } }
 .scene.open .note .tool, .ov.show .tool { animation: slap .45s cubic-bezier(.3, 1.4, .5, 1) backwards; animation-delay: calc(var(--i) * .07s + .75s); }
 .ov.show .tool { animation-delay: calc(var(--i) * .07s + .25s); }
 .about-tools { margin: 4px 0 24px; }
 .about-tools .tool { --tw: 64px; }
 .ov .tools-head { color: var(--p-ink-2); }
-.ov .tools-restore { color: var(--p-accent); }
 
 /* Les éléments 3D de la page ne doivent jamais passer devant le calque (certains navigateurs mobiles les affichent au-dessus). */
 body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden; transition: visibility 0s .4s; }
@@ -2480,32 +2474,12 @@ var SITE = {
     var hue = (String(name).charCodeAt(0) * 47) % 360;
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="hsl(' + hue + ' 55% 80%)"/><text x="12" y="16.5" text-anchor="middle" font-family="Outfit, Futura, Arial, sans-serif" font-weight="800" font-size="13" fill="#2b2a27">' + esc(String(name).charAt(0).toUpperCase()) + '</text></svg>';
   }
-  function toolsHTML(hint) {
+  function toolsHTML() {
     var items = SITE.tools.map(function (t, i) {
-      return '<button class="tool" type="button" style="--r:' + ROT[i % ROT.length] + 'deg;--i:' + i + '" title="' + esc(t) + '" aria-label="Décoller l’autocollant ' + esc(t) + '"><span class="tool-in">' + glyph(t) + '</span><span class="peel-w"><i class="peel"></i></span></button>';
+      return '<span class="tool" role="img" style="--r:' + ROT[i % ROT.length] + 'deg;--i:' + i + '" title="' + esc(t) + '" aria-label="' + esc(t) + '"><span class="tool-in">' + glyph(t) + '</span></span>';
     }).join('');
-    return '<div class="tools" data-tools><div class="tools-head"><span class="mono">Mes outils</span><span class="tools-hint mono">' + esc(hint || 'Cliquez pour décoller') + '</span><button class="tools-restore mono" type="button" hidden>↺ Tout recoller</button></div><div class="tools-row">' + items + '</div></div>';
+    return '<div class="tools"><div class="tools-head"><span class="mono">Mes outils</span></div><div class="tools-row">' + items + '</div></div>';
   }
-  function syncTools(box) {
-    var any = Array.prototype.some.call(box.querySelectorAll('.tool'), function (b) { return b.hidden; });
-    box.querySelector('.tools-restore').hidden = !any;
-    box.querySelector('.tools-hint').hidden = any;
-  }
-  document.addEventListener('click', function (e) {
-    var t = e.target.closest('.tool');
-    if (t) {
-      if (t.classList.contains('peeling')) return;
-      t.classList.add('peeling');
-      setTimeout(function () { t.hidden = true; t.classList.remove('peeling'); syncTools(t.closest('[data-tools]')); }, 540);
-      return;
-    }
-    var r = e.target.closest('.tools-restore');
-    if (r) {
-      var box = r.closest('[data-tools]');
-      Array.prototype.forEach.call(box.querySelectorAll('.tool'), function (b) { b.hidden = false; });
-      syncTools(box);
-    }
-  });
   $('#aboutTools').innerHTML = toolsHTML();
 
   /* --- Autocollant photo --- */
@@ -2523,7 +2497,7 @@ var SITE = {
   function offset() { return narrowMQ.matches ? 1 : 0; }
   function aboutSheetHTML() {
     return '<div class="ab-top"><div class="ab-st">' + stickerHTML() + '</div><div><p class="eyebrow mono">Qui je suis</p><h3>' + esc(SITE.hello) + '</h3></div></div>' +
-      '<p class="desc">' + esc(SITE.short) + '</p>' + toolsHTML('Touchez pour décoller') +
+      '<p class="desc">' + esc(SITE.short) + '</p>' + toolsHTML() +
       '<a class="cta" href="#a-propos"><span>Mon profil</span><span class="cta-ic" aria-hidden="true">→</span></a>';
   }
   function buildSheets() {
