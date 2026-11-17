@@ -445,6 +445,18 @@ body.ov-open #top, body.ov-open #main, body.ov-open #footer { visibility: hidden
 .pj-nav a:last-child { text-align: right; }
 .pj-nav .mono { color: var(--p-ink-2); }
 .pj-nav b { font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+/* Parcours (expériences) */
+.xp-wrap { margin: 34px 0 6px; }
+.xp-wrap h2 { margin: 0; font-weight: 400; color: var(--p-ink-2); }
+.xp { list-style: none; margin: 12px 0 0; padding: 0; }
+.xp li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 6px 24px; padding: 18px 0; border-top: 1px solid var(--p-line); }
+.xp .per { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--p-ink-2); padding-top: 4px; }
+.xp b { display: block; font-weight: 600; font-size: 17px; letter-spacing: -.01em; }
+.xp .org { display: block; color: var(--p-ink-2); font-size: 15px; margin-top: 2px; }
+.xp .projs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.xp .projs a { font-size: 12.5px; padding: 3px 11px; border-radius: 999px; text-decoration: none; color: var(--p-accent); box-shadow: inset 0 0 0 1px var(--p-line); }
+.xp .projs a:hover { box-shadow: inset 0 0 0 1px var(--p-accent); }
+@media (max-width: 600px) { .xp li { grid-template-columns: 1fr; gap: 4px; padding: 16px 0; } .xp .per { padding-top: 0; } }
 .about-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .about-links a { padding: 8px 16px; border-radius: 999px; text-decoration: none; font-weight: 500; font-size: 14px; box-shadow: inset 0 0 0 1px var(--p-line); }
 .about-links a:hover { box-shadow: inset 0 0 0 1px var(--p-accent); color: var(--p-accent); }
@@ -644,6 +656,16 @@ var SITE = {
   about: [
     'Je rends simples les services complexes. J’ai passé deux ans à l’Urssaf à concevoir des services pour les entreprises, de la recherche aux tests utilisateurs.',
     'Je travaille de la recherche terrain jusqu’au lien avec les développeurs, avec une attention particulière à l’accessibilité.'
+  ],
+  /* Expériences : la plus récente en premier. "projects" = adresses (slug) des projets liés. */
+  experience: [
+    { role: 'UX Designer', org: 'Urssaf Caisse nationale', period: '09/2023 – 10/2025', projects: ['suivi-dsn', 'portail-tihm'] },
+    { role: 'Mission freelance, UX/UI et développement web', org: 'Biodiveto', period: '03/2023 – 06/2023' },
+    { role: 'Graphiste', org: 'M2i Life Science', period: '08/2022 – 09/2023' },
+    { role: 'Web designer', org: 'Atelier Julie Goldschmidt', period: '05/2022 – 08/2022' }
+  ],
+  education: [
+    { title: 'Master UX/UI Design', school: 'ECV Digital, Lille', projects: ['centrix', 'cic-pulse', 'scentsoft', 'don-juan-ii'] }
   ],
   tools: ['Figma', 'Miro', 'Notion', 'Atlassian'],   /* ajoute un nom pour créer un autocollant (les logos connus sont dessinés, les autres affichent leur initiale) */
   links: [
@@ -2152,9 +2174,23 @@ var SITE = {
       galleryHTML(p) +
       '<nav class="pj-nav" aria-label="Autres projets"><a href="#' + prev.slug + '"><span class="mono">← Précédent</span><b>' + esc(prev.name) + '</b></a><a href="#' + nxt.slug + '"><span class="mono">Suivant →</span><b>' + esc(nxt.name) + '</b></a></nav>';
   }
+  function projLinks(slugs) {
+    var out = (slugs || []).map(function (sl) { var q = null; P.forEach(function (p) { if (p.slug === sl) q = p; }); return q ? '<a href="#' + q.slug + '">' + esc(q.name) + '</a>' : ''; }).join('');
+    return out ? '<div class="projs">' + out + '</div>' : '';
+  }
+  function experienceHTML() {
+    var xp = (SITE.experience || []).map(function (x) {
+      return '<li><span class="per">' + esc(x.period) + '</span><div><b>' + esc(x.role) + '</b><span class="org">' + esc(x.org) + '</span>' + projLinks(x.projects) + '</div></li>';
+    }).join('');
+    var ed = (SITE.education || []).map(function (x) {
+      return '<li><span class="per">Formation</span><div><b>' + esc(x.title) + '</b><span class="org">' + esc(x.school) + '</span>' + projLinks(x.projects) + '</div></li>';
+    }).join('');
+    return '<section class="xp-wrap"><h2 class="mono">Parcours</h2><ol class="xp">' + xp + ed + '</ol></section>';
+  }
   function aboutHTML() {
     return '<div class="about-hero">' + stickerHTML() + '<header class="pj-head"><p class="eyebrow mono">À propos</p><h1 id="ovTitle">' + esc(SITE.hello) + '</h1></header></div>' +
       '<div class="pj-sections">' + SITE.about.map(function (t) { return '<section><p>' + esc(t) + '</p></section>'; }).join('') + '</div>' +
+      experienceHTML() +
       '<div class="about-tools">' + toolsHTML() + '</div>' +
       '<dl class="facts row"><div><dt>Contact</dt><dd>' + esc(SITE.email) + '</dd></div></dl>' +
       '<div class="about-links"><a class="main" href="mailto:' + esc(SITE.email) + '">Écrire un message</a>' + SITE.links.map(function (l) { return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a>'; }).join('') + '</div>';
